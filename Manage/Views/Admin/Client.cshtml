@@ -1,0 +1,50 @@
+﻿@model Db.Client
+
+@{
+    ViewBag.Title = "Client";
+}
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h1>Admin <i class="fa fa-angle-double-right"></i> Clients <i class="fa fa-angle-double-right"></i> @Model.Name</h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null)
+    {
+    <p class="SuccesMessage">Saved!</p>
+    }
+    
+
+<fieldset>
+    <legend>Post-Tip settings</legend>
+    <ul>
+        <li>
+            @Html.LabelFor(m => m.Name)
+            <p>@Html.DisplayFor(m => m.Name)</p>
+        </li>   
+        <li>
+            @Html.LabelFor(m => m.ClientType)
+            @Html.DropDownList("TypeId", (SelectList)ViewBag.ClientTypeList, "-- select a clienttype --")
+        </li>   
+        <li>
+            @Html.LabelFor(m => m.Hash)
+            <p>@Html.DisplayFor(m => m.Hash)</p>
+        </li>   
+        <li>
+            @Html.LabelFor(m => m.WebsiteUrl)
+            <p>@Html.DisplayFor(m => m.WebsiteUrl)</p>
+        </li>       
+    </ul>
+        @Html.HiddenFor(m => m.ClientId)
+    <input type="submit" value="Update" />
+</fieldset>
+
+}
+

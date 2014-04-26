@@ -1,0 +1,50 @@
+﻿@model Manage.Models.SignUpModel
+@{
+    Layout = "~/Views/Shared/_LayoutNotLoggedOn.cshtml";
+    ViewBag.Title = "Signup";
+}
+
+<h1>Signup</h1>
+<p>Signup to get access to your tiptrace statistics!</p>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Sign Up</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { style = "width:28em;" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </li>        
+            <li>    
+                @Html.LabelFor(m => m.Url)
+                @Html.TextBoxFor(m => m.Url, new { style = "width:28em;" })
+                @Html.ValidationMessageFor(m => m.Url)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { style = "width:28em;" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { style = "width:28em;" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>  
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword, new { style = "width:28em;" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>  
+        </ul>
+        <input type="submit" value="Sign up" />
+    </fieldset>
+}
+
+<h2>Already signed up?</h2>
+<p>Log in @Html.ActionLink("here", "Login", "Account")</p>

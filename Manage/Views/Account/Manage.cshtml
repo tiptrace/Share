@@ -1,0 +1,39 @@
+﻿@model Manage.Models.PersonalModel
+@{
+    ViewBag.Title = "Account";
+}
+
+<h1>Account</h1>
+<p>Here you can manage your account settings</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null) {
+        <p class="SuccesMessage">Saved!</p>
+    }
+    
+    <h2>Website information</h2>
+    <p>On which website are you implementing TipTrace?</p>
+    <fieldset>
+        <legend>Website information</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { style = "width:20em;" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </li>        
+            <li>    
+                @Html.LabelFor(m => m.Url)
+                @Html.TextBoxFor(m => m.Url, new { style = "width:20em;" })
+                @Html.ValidationMessageFor(m => m.Url)
+            </li>
+        </ul>
+        @Html.HiddenFor(m => m.ClientId)
+        <input type="submit" value="Update" />
+    </fieldset>
+    
+}
+

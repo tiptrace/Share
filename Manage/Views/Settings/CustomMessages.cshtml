@@ -1,0 +1,33 @@
+﻿@model Manage.Models.Settings
+@{
+    ViewBag.Title = "Custom default messages";
+}
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+
+<h1>Settings <i class="fa fa-angle-double-right"></i> Custom default messages</h1>
+<p>Increase conversion by providing custom default messages.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null) {
+    <p class="SuccesMessage">Custom default message has been saved</p>
+    }
+    
+    <fieldset>
+        <legend>Custom default message</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.DefaultTipMessage)
+                @Html.TextAreaFor(m => m.DefaultTipMessage, new { style = "width:40em;height:8em;" })
+                @Html.ValidationMessageFor(m => m.DefaultTipMessage)
+            </li>
+        </ul>
+        <input type="submit" value="Update" />
+    </fieldset>
+}

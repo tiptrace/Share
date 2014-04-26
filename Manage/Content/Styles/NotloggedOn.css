@@ -1,0 +1,252 @@
+﻿body, html
+{
+    height:100%;
+    background-color:#FBFAF8;
+    font-family: 'News Cycle',sans-serif;
+    margin:0;
+    padding:0;
+    
+}
+
+.clearfix:after
+{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+h1
+{
+    font-family: 'News Cycle',sans-serif;
+    color:#A0CE4E;
+    font-size:2em;
+    font-weight: 700;
+    margin:0;
+    padding:0;
+}
+
+h2
+{
+    font-family: 'News Cycle',sans-serif;
+    color:#A0CE4E;
+    font-size:1.2em;
+    font-weight: 400;
+    margin:0;
+    padding:0;
+}
+
+p
+{
+    font-size:0.9em;
+    color:#525252;
+    margin:0;
+    padding:0 0 0.7em 0;
+}
+
+p.SuccesMessage
+{
+    color:Red;
+}
+
+p a
+{
+    color:#A0CE4E;
+}
+
+body.LoggedOn header
+{
+    background-color:white;
+    border-bottom:solid 1px #E3EAD6;
+    min-width:57em;
+}
+
+body.LoggedOn header a.Logo
+{    
+    width:180px;
+    height:62px;
+    display:block;
+    background-image:url('/Content/Images/logo.png');
+    background-repeat:no-repeat;
+    text-indent:-999em;
+    float:left;
+    margin:0.2em 0.2em 0;
+}
+
+body.LoggedOn header ul
+{
+    list-style:none;
+    float:left;
+    margin:1.4em 0 0 1em;
+    padding:0;
+}
+
+body.LoggedOn header ul li
+{
+    display:block;
+    float:left;
+    margin:0.4em 0 0 0;
+}
+
+body.LoggedOn header ul li a
+{
+    border-left:solid 1px #E3EAD6;
+    display:block;
+    padding:0 1em;
+    text-decoration:none;
+    color:#7FA836;
+}
+
+body.LoggedOn header ul li a:hover
+{
+    text-decoration:underline;
+}
+
+body.LoggedOn header .UserInfo
+{
+    font-size:0.8em;
+    margin:0 0.8em 0.2em;
+}
+
+
+body.LoggedOn div.Container
+{
+    height:100%;
+}
+
+body.LoggedOn div.SubMenu
+{
+    background-color:White;
+    width:10em;
+    position:absolute;
+    border-right:1px solid #E3EAD6;
+}
+
+body.LoggedOn div.Content
+{
+    margin-left:10.1em;
+    padding:0 1em 1em 1em;
+    min-width:44.6em;
+}
+
+body.LoggedOn div.ContentInner
+{
+    float:left;
+}
+
+body.NotLoggedOn div.Container
+{
+    background-color:#fff;
+    margin:0 auto;
+    padding:0 1em 1em 1em;
+    width:25em;
+    
+    
+    border:solid 1px #E3EAD6;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+body.NotLoggedOn header a.Logo
+{
+    width:180px;
+    height:62px;
+    display:block;
+    background-image:url('/Content/Images/logo.png');
+    text-indent:-999em;
+    margin:2em auto 0 auto;
+}
+
+body.NotLoggedOn footer p
+{
+    font-size:85%;
+    text-align:center;
+}
+
+fieldset
+{
+    border:none;
+    padding:0;
+    margin:0 0 1em 0;
+}
+
+fieldset legend
+{
+    display:none;
+}
+
+fieldset ul
+{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+fieldset ul li
+{
+    margin:0 0 0.3em 0;
+}
+
+fieldset input
+{
+    border:2px solid #E8E8E8;
+    padding:0.5em;
+    color:#525252;
+}
+
+label
+{
+    display:block;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+
+form .validation-summary-errors ul
+{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+form .validation-summary-errors ul li
+{
+    color:Red;
+}
+
+form input.input-validation-error
+{
+    border-color:Red;
+}
+
+form span.field-validation-error
+{
+    display:block;
+    color:Red;
+}
+
+table.ContentTable
+{
+    border-collapse:collapse;
+    margin-bottom:1em;
+}
+
+table.ContentTable thead td
+{
+    padding:0.2em 0.3em;
+    margin:0;
+    font-size:0.9em;
+    color:#7FA836;
+    border-bottom:solid 1px #7FA836;
+}
+
+table.ContentTable tbody td
+{
+    padding:0.1em 0.3em;
+    margin:0;
+    font-size:0.9em;
+    border-bottom:dotted 1px #A0CE4E;
+}

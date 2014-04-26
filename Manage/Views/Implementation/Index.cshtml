@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "My Code";
+}
+
+<h1>My Code</h1>
+<p>Copy the following code to your website, and let your visitors start tip your content right away!</p>
+
+
+<h2>In the &lt;head&gt;-tag:</h2>
+<textarea style="width:740px;height:130px;">
+<!-- Tiptrace -->
+<script type="text/javascript">
+    var tt_options = tt_options || { Client: "@ViewBag.ClientHash" };
+    (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//script.tiptrace.com/script"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'tiptrace-js'));
+</script>
+</textarea>
+
+<h2>The Button</h2>
+<p>add the class "tt-tipthis" to any element on your page to make it a tiptrace-button</p>
+<textarea style="width:740px;height:30px;"><span class="tt-tipthis">Tip a friend about this content!</span></textarea>
+
+<p>optional: add a specific url to that element to make it tip a specific page:</p>
+<textarea style="width:740px;height:30px;"><span class="tt-tipthis" data-url="http://tiptrace.com">Tip a friend about TipTrace!</span></textarea>
+

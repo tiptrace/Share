@@ -1,0 +1,207 @@
+﻿@model Web.Models.Share
+@{
+    ViewBag.Title = "TipTrace";
+}
+<script language="javascript">
+    $(document).ready(function () {
+        TipTraceWidget.initialize('@ViewBag.Url', '@ViewBag.ClientHash', @ViewBag.ClientSettings_WithEmailReward, @ViewBag.ClientSettings_WithEmailUpdate);
+    });
+</script>
+
+<div class="LoadingContainer">
+    <div class="Inner"><!-- --></div>
+</div>
+
+<div id="Header">
+
+    <div class="UrlContainer">  
+        <a href="javascript:void(0);" class="Logout">(log out)</a>   
+        <div id="ShareUrl">    
+            <span class="UrlLine Title">Loading...</span>
+            <span class="UrlLine Description">Loading..</span>  
+        </div>
+    </div>
+
+    <div class="NetworkContainer">
+
+        <div id="Networks" class="Networks">
+
+            <span class="Label">Tip this via:</span>
+
+            <a href="javascript:void(0);" class="ConnectNetwork Email" id="Network_email" data-network="email" title="Email">
+                <span>
+                    Email
+                </span>
+            </a>
+
+            <span class="Label">or</span>
+
+            <a href="javascript:void(0);" class="ConnectNetwork Facebook" id="Network_facebook" data-network="facebook" title="Facebook">
+                <span>
+                    Facebook
+                </span>
+            </a>
+
+            <a href="javascript:void(0);" class="ConnectNetwork LinkedIn" id="Network_linkedin" data-network="linkedin" title="LinkedIn">
+                <span>
+                    Linkedin
+                </span>
+            </a>
+
+            <a href="javascript:void(0);" class="ConnectNetwork Twitter" id="Network_twitter" data-network="twitter" title="Twitter">
+                <span>
+                    Twitter
+                </span>
+            </a>
+
+            <a href="javascript:void(0);" class="ConnectNetwork Google" id="Network_google" data-network="google" title="Gmail">
+                <span>
+                    Gmail
+                </span>
+            </a>
+
+            <a href="javascript:void(0);" class="ConnectNetwork Hotmail" id="Network_hotmail" data-network="hotmail" title="Hotmail">
+                <span>
+                    Hotmail
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="SuccesContainer">
+        <h1>Share was successful!</h1>
+    </div>
+
+    @*<div class="Dummy"><!-- --></div>*@
+</div>
+
+<div id="FeedbackMessage">
+    Message
+</div>
+
+<div id="ContentContainer">
+    
+    <div class="ContactContainer Full">
+        <div class="ContactSearchContainer">
+            <input type="search" id="SearchBox" name="SearchBox" autocomplete="off" placeholder="Search friends" />
+        </div>
+        <div class="ContactListContainer">
+            <ul id="ContactList">
+            </ul>
+        </div>
+       
+    </div>
+    <div class="SelectedContactContainer" style="display:none;">
+
+        <h2>
+            Selected friends
+            <span class="Counter">5</span>
+        </h2>
+
+        <div class="SelectedContactInnerContainer">
+            <ul id="SelectedContactList">
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="DefaultContainer"><!-- --></div>
+
+    <div class="FinalContainer">
+           
+           
+        @using (Html.BeginForm("Feedback", "Default", FormMethod.Post, new { id = "FeedbackForm" }))
+        {
+            <p>Allow this website to contact me:</p>
+            <ul class="FeedbackOptionList">
+                <li id="FeedbackListItemReward">
+                    <input type="checkbox" name="FeedbackOption" value="reward" />
+                    to receive a reward for sharing (if applicable)
+                </li>
+                <li id="FeedbackListItemUpdate">
+                    <input type="checkbox" name="FeedbackOption" value="update" />
+                    to receive news & updates
+                </li>   
+            </ul>
+            <input type="Email" id="FeedbackEmail" name="FeedbackEmail" placeholder="Email address" />
+                
+            <input type="hidden" name="FeedbackShareSessionId" id="FeedbackShareSessionId" />
+                
+            <input type="submit" ID="SendFeedback" value="Save" />
+        }
+            
+        <div id="FeedBackSuccesMessage">
+            <p>Thanks for your feedback!</p>
+        </div>
+                
+        <a class="ResetShare" href="javascript:void(0);">Share again</a>
+
+
+    </div>
+   
+
+   <div id="MessageContainer">
+
+        @using (Html.BeginForm("Index", "Default", FormMethod.Post, new { id = "ShareForm" }))
+        {
+            <h2>Don't forget to leave a personal message</h2>
+            @Html.TextAreaFor(model => model.Message, new { placeholder = "Your personal message" })
+
+            @Html.HiddenFor(model => model.TargetsJson)
+            @Html.HiddenFor(model => model.UrlJson)
+            @Html.HiddenFor(model => model.ClientHash)
+            @Html.HiddenFor(model => model.ManualName)
+            @Html.HiddenFor(model => model.ManualEmail)
+
+            <input type="submit" ID="SendButton" value="Tip This!" />   
+        }
+    
+        <div class="Dummy"><!-- --></div>
+    </div>
+
+    <div id="AddEmailFormContainer">
+    
+        <div class="Overlay"><!-- --></div>
+
+        <div class="Popup">
+            <div class="CloseButton"><!-- --></div>
+
+            @using (Html.BeginForm("Index", "Default", FormMethod.Post, new { id = "AddEmailForm" }))
+            {
+                <h2>Add email manually</h2>
+                <input type="text" id="AddEmailSourceName" placeholder="Your name" class="Textbox" />
+                <input type="email" id="AddEmailSourceEmail" placeholder="Your email" class="Textbox"/>
+                <input type="text" id="AddEmailTargetName" placeholder="Your friends name" class="Textbox"/>
+                <input type="email" id="AddEmailTargetEmail" placeholder="Your friends email" class="Textbox"/>
+                <input type="submit" id="AddEmailButton" value="Add email" />
+            }
+        </div>
+
+    </div>
+
+    <div class="Dummy"><!-- --></div>
+</div>
+
+<div id="Footer">
+
+
+    <div class="Menu">
+        <a href="http://www.tiptrace.com/help" target="_blank" title="Need help?">Need help?</a>
+        |
+        <a href="http://www.tiptrace.com/terms_conditions" target="_blank" title="Terms & Conditions">Terms & Conditions</a>
+        |
+        <a href="http://tiptrace.com/bookmarklet" target="_blank" title="Get bookmarktlet">Get bookmarktlet</a>
+    </div>
+
+    
+    <a class="Logo" href="http://www.tiptrace.com" target="_blank" title="TipTrace.com">
+        TipTrace.com
+    </a>
+    <div class="Message">
+        Personal sharing<br />provided by:
+    </div>
+</div>
+
+
+
+

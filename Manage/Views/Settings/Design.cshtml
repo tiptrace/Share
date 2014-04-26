@@ -1,0 +1,61 @@
+﻿@model Manage.Models.Settings
+@{
+    ViewBag.Title = "Design";
+}
+
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h1>Settings <i class="fa fa-angle-double-right"></i> Design</h1>
+<p>Customize the tip popup.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null) {
+    <p class="SuccesMessage">Custom design has been saved</p>
+    }
+    
+    <fieldset>
+        <legend>Colors</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.CustomColor1)
+                @Html.TextBoxFor(m => m.CustomColor1, new { @class = "color-picker" })
+                @Html.ValidationMessageFor(m => m.CustomColor1)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.CustomColor2)
+                @Html.TextBoxFor(m => m.CustomColor2, new { @class = "color-picker" })
+                @Html.ValidationMessageFor(m => m.CustomColor2)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.CustomColor3)
+                @Html.TextBoxFor(m => m.CustomColor3, new { @class = "color-picker" })
+                @Html.ValidationMessageFor(m => m.CustomColor3)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.CustomColor4)
+                @Html.TextBoxFor(m => m.CustomColor4, new { @class = "color-picker" })
+                @Html.ValidationMessageFor(m => m.CustomColor4)
+            </li>
+              
+        </ul>
+    </fieldset>
+    
+    <p>More:</p>
+    <fieldset>
+        <legend>Colors</legend>
+        <ul>
+            <li>
+                @Html.EditorFor(m => m.CustomStatus1)
+                @Html.LabelFor(m => m.CustomStatus1, new { @class = "checkbox" })
+            </li>
+        </ul>
+        <input type="submit" value="Update" />
+    </fieldset>
+}

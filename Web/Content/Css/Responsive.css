@@ -1,0 +1,893 @@
+﻿body, html
+{
+    margin:0;
+    padding:0;
+    background-color:#fbfaf8;
+    /*font-family: Tahoma;*/
+    font-family: 'News Cycle', sans-serif;
+    
+	height:100%;
+	min-height:100%;
+	
+}
+
+/*Base classes*/
+
+.Dummy
+{
+    clear:both;
+    height:0;
+    line-height:0;
+}
+
+.ClearFix:after
+{
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+.Textbox, textarea
+{
+    border:solid 1px #BDC7D8;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.FormButton
+{
+    border:solid 1px #86AF3A;
+    background-color:#A0CE4E;
+    color:White;
+    font-weight:bold;
+    
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+/* BaseContainers */
+
+#Container
+{
+    margin:0;
+    padding:0;
+
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+}
+
+
+#ContactContainer
+{
+    position:absolute;
+    overflow:hidden;
+    
+    top:124px;
+    bottom:132px;
+    left:0px;
+    right:0px;
+    
+    display:none;
+}
+
+#MessageContainer
+{
+    position:absolute;
+    height:100px;
+    bottom:32px;
+    left:2px;
+    right:2px; 
+    display:none;
+}
+
+footer
+{
+    position:absolute; 
+    border-top:solid 1px #E3EAD6;
+    background-color:White;
+    height:30px;
+    padding:1px;
+    font-size:12px;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+#HeaderContainer
+{
+    /* Niks nog */
+}
+
+/* FinalContainer */
+#FinalContainer
+{
+    display:none;
+}
+
+
+
+/* Page Statusses */
+
+/*NotLoggedOn*/
+#Container.NotLoggedOn #HeaderContainer header { padding:10px; }
+#Container.NotLoggedOn #HeaderContainer h1 { font-size:24px; }
+#Container.NotLoggedOn #HeaderContainer h2 { font-size:18px; }
+
+
+/*LoggedOn*/
+#Container.LoggedOn #ContactContainer { display:block;bottom: 32px; }
+#Container.LoggedOn #ContactContainer .SelectedContacts { display:none; }
+#Container.LoggedOn #HeaderContainer header .Logout { display:block; }
+
+
+
+/* ContactSelected*/
+#Container.ContactSelected #ContactContainer { display:block;bottom: 132px; }
+#Container.ContactSelected #MessageContainer { display:block; }
+#Container.ContactSelected #HeaderContainer header .Logout { display:block; }
+
+#Container.ContactSelected #ContactContainer .Contacts { right:175px; }
+#Container.ContactSelected #ContactContainer .SearchBox  { right:177px; }
+#Container.ContactSelected #ContactContainer .SelectedContacts { display:block; }
+
+
+/* ShareFinished */
+#Container.ShareFinished #FinalContainer { display:block; }
+#Container.ShareFinished #ContactContainer { display:none; }
+#Container.ShareFinished #NetworkContainer { display:none; }
+#Container.ShareFinished #MessageContainer { display:none; }
+
+
+
+/*HeaderContainer*/
+#HeaderContainer header
+{
+    padding:5px 10px;
+}
+
+#HeaderContainer header h1
+{
+    margin:0;
+    padding:0;
+    
+    font-family: 'News Cycle', sans-serif;
+    font-weight:700;
+    font-size:19px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    color:#A0CE4E;
+}
+
+#HeaderContainer header h2
+{
+    margin:-7px 0 0 0;
+    padding:0;
+    float:left;
+    
+    font-family: 'News Cycle', sans-serif;
+    font-size:15px;
+    font-weight:400;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    color:#7b7b7b;
+}
+
+
+#HeaderContainer header .Logout
+{
+    display:none;
+    float:right;
+    font-family: 'News Cycle', sans-serif;
+    font-size:15px;
+    font-weight:400;
+    margin:-7px 0 0 0;
+    padding:0;
+    text-decoration:none;
+    color:#A4A4A4;
+}
+#HeaderContainer header .Logout:hover
+{
+    text-decoration:underline;
+}
+
+#HeaderContainer.Small header
+{
+    padding:5px 10px;
+}
+
+#HeaderContainer.Small h1
+{
+    font-size:19px;
+}
+#HeaderContainer.Small h2
+{
+    font-size:15px;
+}
+
+#NetworkContainer
+{
+    border-top:solid 1px #e3ead6;
+    border-bottom:solid 1px #e3ead6;
+    background-color:White;
+    padding:10px;
+}
+
+div.Networks span.Label
+{
+    float:left;
+    display:block;
+    font-size:16px;
+    padding:8px 15px 0 0;
+}
+
+
+div.Networks .ConnectNetwork
+{
+    display:block;
+    width:47px;
+    height:47px;
+    float:left;
+    margin:0 10px 0 0;
+    text-indent:-999px;
+    
+    background-image:url('/content/images/sprite2.png'); 
+    background-repeat:no-repeat;
+}
+
+
+div.Networks .ConnectNetwork span
+{
+    display:block;
+    width:47px;
+    height:47px;
+    
+    background-image:url('/content/images/sprite2.png'); 
+    background-repeat:no-repeat;
+    background-position:0px -47px;
+    text-indent: -9999em;
+}
+
+
+div.Networks .ConnectNetwork.error span
+{
+    background-position:-94px -47px !important;
+}
+
+div.Networks .ConnectNetwork.selected span
+{
+    background-position:-47px -47px;
+}
+
+div.Networks .ConnectNetwork.loading span
+{
+    
+    background-image:url('/content/images/icons/ajax-loader-network.gif');
+    background-position:0px 0px;
+}
+
+div.Networks .Facebook
+{   
+    background-position:-47px 0px;
+}
+div.Networks .Facebook:hover, 
+div.Networks .Facebook.connected
+{   
+    background-position:0px 0px;
+}
+
+div.Networks .Twitter
+{
+    background-position:-141px 0px;
+}
+div.Networks .Twitter:hover,
+div.Networks .Twitter.connected
+{
+    background-position:-94px 0px;
+}
+
+
+div.Networks .LinkedIn
+{
+    background-position:-235px 0px;
+}
+div.Networks .LinkedIn:hover,
+div.Networks .LinkedIn.connected
+{
+    background-position:-188px 0px;
+}
+
+div.Networks .Google
+{
+    background-position:-329px 0px;
+}
+div.Networks .Google:hover,
+div.Networks .Google.connected
+{
+    background-position:-282px 0px;
+}
+
+
+div.Networks .Hotmail
+{
+    background-position:-423px 0px;
+}
+div.Networks .Hotmail:hover,
+div.Networks .Hotmail.connected
+{
+    background-position:-376px 0px;
+}
+
+div.Networks .Email
+{
+    background-position:-517px 0px;
+}
+div.Networks .Email:hover,
+div.Networks .Email.connected
+{
+    background-position:-470px 0px;
+}
+div.Networks .Email.selected span
+{
+    background-position:0px -47px;
+}
+
+
+/* Contact container */
+
+
+#ContactContainer .SearchBox
+{
+    position:absolute;
+    top:8px;
+    left:2px;
+    right:2px;
+    height:22px;
+    margin:0;
+    padding:0;
+    background-color:#EDEDED;
+}
+
+#ContactContainer #SearchBox
+{
+    margin:2px;
+    padding:2px;
+    font-size: 10px;
+    display:block;
+    width:90%;
+}
+
+#ContactContainer .Contacts
+{
+    position:absolute;
+    top:30px;
+    left:0;
+    right:0;
+    bottom:0;
+    
+    overflow:auto;
+    
+    background-color: white;
+    border: 2px solid #EDEDED;
+    margin:0 2px 2px 2px;
+}
+
+#ContactContainer .SelectedContacts
+{
+    position:absolute;
+    width:175px;
+    top:0;
+    right:0;
+    bottom:0;
+  
+}
+
+#ContactContainer .SelectedContacts h2
+{
+    color: #7B7B7B;
+    font-size: 19px;
+    margin: 0;
+    padding: 0 0 0 5px;
+}
+
+#ContactContainer .SelectedContacts h2 span.Counter
+{
+    display: block;
+    float: right;
+    font-size: 11px;
+    font-weight: normal;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+#ContactContainer .SelectedContactContainer
+{
+    position:absolute;
+    top:30px;
+    bottom:0;
+    left:0;
+    right:0;
+    border:solid 2px #DEE7D7;
+    background-color:White;
+    overflow:auto;
+    margin:0 2px 2px 0;
+}
+
+#ContactList li.Selected
+{
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+    -moz-opacity: 0.2;
+    -khtml-opacity: 0.2;
+}
+
+/*
+#ContactList li.hideContact
+{
+    display:none;
+}
+*/
+
+#ContactContainer ul
+{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+#ContactContainer ul li
+{
+    display:block;
+    float:left;
+    
+    width:170px;
+    margin:0;
+    padding:1px;
+}
+
+#ContactContainer ul li a
+{
+    display:block;
+    position:relative;
+    text-decoration:none;
+    
+    padding:1px;
+    border:solid 1px White;
+}
+
+#ContactContainer ul li a img
+{
+    padding:2px;
+    margin:1px 3px 1px 1px;
+    float:left;
+    
+    width:30px;
+    height:30px;
+    
+    background-color:White;
+    border:solid 1px #edecea;
+}
+
+#ContactContainer ul li a .Name
+{
+    display:block;
+    font-size:12px;
+    color:#696866;
+    line-height:16px;
+    margin-top:2px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight:700;
+    /*
+    width: 115px;
+    float:left;
+    */
+}
+
+#ContactContainer ul li a .Network
+{
+    font-size:10px;
+    display:block;
+    color:#696866;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    /*
+    width: 115px;
+    float:left;
+    */
+}
+
+#ContactContainer ul li a .Button
+{
+    display:none;
+}
+
+
+#ContactContainer ul li a:hover,
+#SelectedContactList li a 
+{
+    border:solid 1px #dbe7c6  !important;
+    background-color:#eff6e3;
+}
+
+#ContactContainer ul li a:hover .Name,
+#ContactContainer ul li a:hover .Network,
+#SelectedContactList li a .Name,
+#SelectedContactList li a .Network
+{
+    color:#A0CE4E;
+}
+
+#ContactContainer ul li a:hover img,
+#SelectedContactList li a img
+{
+    border-color:#dbe7c6;
+}
+
+
+#SelectedContactList li
+{
+    float:none !important;
+    width:auto !important;
+}
+
+#SelectedContactList li:hover a .Button {
+    display: block;
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    right: 4px;
+    top: 10px;
+    background-image:url('/content/images/sprite2.png'); 
+    background-repeat:no-repeat;
+    background-position:0px -94px;
+    text-indent: -9999em;
+}
+
+/* FinalContainer */
+#FinalContainer 
+{
+    padding:10px;
+}
+
+#FinalContainer h2
+{
+    color: #A0CE4E;
+    font-size: 26px;
+    margin: 0;
+}
+
+#FinalContainer p
+{    
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+
+#FinalContainer .FeedbackOptionList
+{
+    list-style:none;
+    margin: 15px 0;
+    padding: 0;
+}
+
+#FinalContainer #FeedbackEmail
+{
+    width:250px;
+}
+
+#FinalContainer #FeedBackSuccesMessage
+{
+    display:none;
+}
+
+#FinalContainer p.ResetShareParagraph
+{
+    padding:15px 0;
+}
+
+/* MessageContainer */
+#MessageContainer h2
+{
+    color: #7B7B7B;
+    font-size: 19px;
+    margin: 0;
+    padding: 0 0 0 5px;
+}
+
+
+#MessageContainer textarea
+{
+    float:left;
+    
+    font-family: arial;
+    font-size: 13px;
+    
+    height: 60px;
+    width:80%;   
+    padding: 8px;
+    margin:0;
+    border: 2px solid #E8E8E8;
+    
+    color:#686868;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  
+}
+
+#MessageContainer .Button
+{
+    width:20%;
+    margin:0;
+    padding:0;
+    height: 60px;
+    float:right;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Footer */
+
+footer .Message
+{
+    font-size:10px;
+    float:right;
+    color:#525252;
+    padding-right: 3px;
+    padding-top: 7px;  
+}
+
+footer .Logo
+{
+    display:block;
+    float:right;
+    width:101px;
+    height:30px;
+    background-image:url('/content/images/sprite.png'); 
+    background-repeat:no-repeat;
+    background-position:0px -60px;
+    text-indent: -9999em;
+}
+
+footer .Menu
+{
+    float:left;
+    font-size:11px;
+    color:Black;
+    padding:7px;
+}
+
+footer .Menu a
+{
+    text-decoration:underline;
+    color:Black;
+    color:#525252;
+}
+
+
+/*Add Email form*/
+#AddEmailFormContainer
+{
+    display:none;
+}
+
+#AddEmailFormContainer .Popup
+{
+    position:absolute;
+    width:286px;
+    top:50px;
+    left:50%;
+    margin-left:-156px;
+    padding:10px;
+    /*background-color:#f0f9e9;
+    border:solid 2px #a9bc9b;*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #F0F0F0;
+    border: 2px solid #D1D1D1;
+}
+
+#AddEmailFormContainer .CloseButton
+{
+    width:22px;
+    height:22px;
+    background-image:url('/content/images/sprite2.png'); 
+    background-repeat:no-repeat;
+    background-position:0px -94px;
+    text-indent: -9999em;
+    position:absolute;
+    top:5px;
+    right:5px;
+    cursor:pointer;
+}
+
+#AddEmailFormContainer h2
+{
+    padding:0 0 10px 0;
+    margin:0;
+    font-size:16px;
+}
+
+#AddEmailFormContainer .Textbox
+{
+    width:100%;
+    margin:0 0 3px 0;
+    padding:2px 4px;
+    border:2px solid #dee7d7;
+    
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#AddEmailFormContainer .Overlay
+{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:White;
+    
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+
+#FeedbackMessage
+{
+    display:none;
+    position:absolute;
+    text-align:center;
+    color:#f32c27;
+    
+    padding:10px;
+    left:10px;
+    right:10px;
+    
+    border:solid 1px #de3c37;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    
+    background: #ffe2e4;
+    background: -moz-linear-gradient(top,  #ffe2e4 0%, #fff6f7 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffe2e4), color-stop(100%,#fff6f7));
+    background: -webkit-linear-gradient(top,  #ffe2e4 0%,#fff6f7 100%);
+    background: -o-linear-gradient(top,  #ffe2e4 0%,#fff6f7 100%);
+    background: -ms-linear-gradient(top,  #ffe2e4 0%,#fff6f7 100%);
+    background: linear-gradient(to bottom,  #ffe2e4 0%,#fff6f7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe2e4', endColorstr='#fff6f7',GradientType=0 );
+    z-index:200;
+
+}
+
+#LoadingContainer
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:486px;
+    background-color:white;
+    display:none;
+    
+    opacity:0.8;
+    filter:alpha(opacity=80);
+    z-index:1000;
+}
+
+#LoadingContainer .Inner
+{
+    background-image:url('/content/images/icons/ajax-loader.gif');
+    width:100%;
+    height:460px;
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+
+/*Media Queries*/
+
+/*2 contacten per regel*/
+@media all and (max-width: 695px) 
+{
+    #ContactContainer #ContactList li { width:32%; margin:0; padding:1px; }
+}
+
+/*2 contacten per indien een contact geselecteerd*/
+@media all and (max-width: 698px) 
+{
+    #Container.ContactSelected #ContactList li { width:49%; margin:0;  padding:1px; }
+}
+
+/*Kleinere titel*/
+/*2 contacten per regel*/
+/*1 contact per indien een contact geselecteerd*/
+/*Kleinere select van netwerken */
+/* footer compacter */
+@media all and (max-width: 505px) 
+{
+    #NetworkContainer { padding:8px; }
+    #ContactContainer { top:102px; }
+    
+    div.Networks span.Label { font-size:14px; padding:3px 8px 0 0; }
+    div.Networks .ConnectNetwork { width:39px; height:39px; margin:0 5px 0 0; background-size:500px; }
+    div.Networks .ConnectNetwork span { width:39px;height:39px; background-size:500px; background-position:0px -39px; }
+    
+    div.Networks .ConnectNetwork.error span { background-position:-78px -39px !important; }
+    div.Networks .ConnectNetwork.selected span { background-position:-39px -39px; }
+    div.Networks .ConnectNetwork.loading span { background-image:url('/content/images/icons/ajax-loader-network.gif'); background-position:0 0; background-size:39px 39px; }
+
+    div.Networks .Facebook { background-position:-39px 0px; } 
+    div.Networks .Facebook:hover,  div.Networks .Facebook.connected { background-position:0px 0px; }
+    div.Networks .Twitter { background-position:-117px 0px; } 
+    div.Networks .Twitter:hover, div.Networks .Twitter.connected { background-position:-78px 0px; }
+    div.Networks .LinkedIn { background-position:-195px 0px; } 
+    div.Networks .LinkedIn:hover, div.Networks .LinkedIn.connected { background-position:-156px 0px; }
+    div.Networks .Google { background-position:-273px 0px; }
+    div.Networks .Google:hover, div.Networks .Google.connected { background-position:-234px 0px; }
+    div.Networks .Hotmail { background-position:-351px 0px; }
+    div.Networks .Hotmail:hover, div.Networks .Hotmail.connected { background-position:-312px 0px; }
+    div.Networks .Email { background-position:-429px 0px; }
+    div.Networks .Email:hover, div.Networks .Email.connected { background-position:-390px 0px; }
+    div.Networks .Email.selected span { background-position:0px -39px; }
+
+    #HeaderContainer header h1 { font-size:16px; }
+    #HeaderContainer header h2 { font-size:14px; }
+    #ContactContainer #ContactList li { width:49%; margin:0; padding:1px; }
+    #Container.ContactSelected #ContactList li { display:block; float:none; width:auto; margin:0; padding:1px; }
+    
+    footer .Message  { text-indent:-999px; }
+}
+
+
+/*move the selected contacts to bottom*/
+/*one contact per line*/
+/*even smaller network select */
+@media all and (max-width: 351px) 
+{
+    #NetworkContainer { padding:7px; }
+    #ContactContainer { top:100px; }
+    div.Networks span.Label { font-size:14px; padding:3px 2px 0 0; }
+    div.Networks span.Or { display:none; }
+
+    #MessageContainer {  height:80px; }
+    #MessageContainer h2 { font-size: 17px; }
+    #MessageContainer textarea { height: 50px; padding: 6px; }
+    #MessageContainer .Button { height: 50px; }
+    
+    #Container.ContactSelected #ContactContainer { bottom:112px;}
+    #ContactContainer #ContactList li { display:block; float:none; width:auto; margin:0; padding:1px; }
+    #Container.ContactSelected #ContactContainer .SelectedContacts  { top:auto; left:0; right:0; bottom:0; width:auto; height:110px; }
+    #Container.ContactSelected #ContactContainer .Contacts { bottom:110px; right:0; }
+    
+    #Container.ContactSelected #ContactContainer .SearchBox { right:0; }
+    
+    footer .Menu { font-size:10px; }
+}

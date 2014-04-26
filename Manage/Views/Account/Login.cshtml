@@ -1,0 +1,43 @@
+﻿@model Manage.Models.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutNotLoggedOn.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<h1>Login</h1>
+<p>Log in to manage your TipTrace account & view your statistics.</p>
+
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset>
+        <legend>Log in</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { style = "width:20em;" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { style = "width:20em;" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>    
+        </ul>
+        <input type="submit" value="Log in" />
+    </fieldset>
+}
+
+<h2>Not signed up yet?</h2>
+<p>
+    sign up here @Html.ActionLink("here", "SignUp", "Account")
+</p>

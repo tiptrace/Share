@@ -1,0 +1,297 @@
+﻿html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main, summary, time, mark, audio, video {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline; }
+
+html {
+  font-size: 62.5%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: none; }
+
+body
+{
+    font-family: 'News Cycle',sans-serif;
+    min-width:61em;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+
+.clearfix:after {
+  clear: both; }
+
+
+header
+{
+    
+}
+
+
+
+header a.Logo
+{
+    width:18em;
+    height:6.2em;
+    display:block;
+    background-image:url('/Content/Images/logo.png');
+    background-repeat:no-repeat;
+    text-indent:-999em;
+    margin:0 0 0 0.4em;
+}
+
+
+header span.LoggedOnInfo
+{
+    float:right;
+    display:block;
+    font-size:1.4em;
+    margin:1.2em 1.5em;
+}
+
+header nav
+{
+    background-color:#A0CE4E;
+    border-top:solid 0.1em #89b63a;
+    border-bottom:solid 0.1em #89b63a;
+}
+
+
+header nav ul
+{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+header nav ul.MainMenu
+{
+    float:left;
+}
+
+header nav ul.AccountMenu
+{
+    float:right;
+}
+
+header nav ul li
+{
+    margin:0;
+    padding:0;
+    display:block;
+    float:left;
+    border-right:solid 0.1em #89b63a;
+    border-left:solid 0.1em #b2dc68;
+}
+
+
+header nav ul li a
+{
+    color:White;
+    text-decoration:none;
+    font-size:1.5em;
+    line-height:1.1em;
+    display:block;
+    float:left;
+    padding:0.6em 1.3em;
+    font-family:Tahoma;
+}
+
+header nav ul li a:hover
+{
+    background-color:#84a745;
+}
+
+
+div.SubMenu
+{
+    background-color:#FBFAF8;
+    border-right:solid 0.1em #bcbcbc;
+    border-bottom:solid 0.1em #bcbcbc;
+    border-top:solid 0.1em #bcbcbc;
+    width:15em;
+    position:absolute;
+    margin:1.5em 0;
+    padding:0 0 1em;
+}
+
+
+div.SubMenu h3
+{
+    padding:0.1em 0.3em;
+    font-size:2.1em;
+}
+
+div.SubMenu h3 a
+{
+    color:#545454;
+    text-decoration:none;
+}
+
+div.SubMenu ul li a
+{
+    font-family:Tahoma;
+    font-size:1.3em;
+    text-decoration:none;
+    display:block;
+    padding:0.2em 0.3em;
+    color:#505050;
+}
+
+
+div.SubMenu ul li a:hover
+{
+    background-color:#a9a9a8;
+    color:White;
+}
+
+div.Content
+{
+    margin-left:15.1em;
+    padding:1.5em;
+}
+
+
+div.Content.NoMenu
+{
+    margin-left:0em !important;
+    padding:1.5em;
+}
+
+h1
+{
+    color:#A0CE4E;
+    font-size:3em;
+    font-weight: 700;
+    margin:0;
+    padding:0;
+}
+
+h2
+{
+    color:#A0CE4E;
+    font-size:2.2em;
+    font-weight: 400;
+    margin:0;
+    padding:0;
+}
+
+p
+{
+    font-size:1.6em;
+    color:#525252;
+    margin:0;
+    padding:0 0 0.7em 0;
+}
+
+
+p.SuccesMessage 
+{
+    color:Red;
+}
+
+fieldset
+{
+    border:none;
+    padding:0;
+    margin:0 0 1em 0;
+}
+
+fieldset legend
+{
+    display:none;
+}
+
+fieldset ul
+{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+fieldset ul li
+{
+    margin:0 0 0.3em 0;
+}
+
+fieldset input
+{
+    border:2px solid #E8E8E8;
+    padding:0.5em;
+    color:#525252;
+}
+
+label
+{
+    display:block;
+    font-size:1.7em;
+}
+
+label.checkbox {
+    display: inline;
+}
+
+
+form .validation-summary-errors ul
+{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+form .validation-summary-errors ul li
+{
+    color:Red;
+}
+
+form input.input-validation-error
+{
+    border-color:Red;
+}
+
+form span.field-validation-error
+{
+    display:block;
+    color:Red;
+    font-size:1.3em;
+}
+
+.ContentTable
+{
+    border-collapse:collapse;
+}
+
+.ContentTable tr td
+{
+    font-size:1.4em;
+    padding:0.1em 0.3em;
+}
+
+.ContentTable thead tr td
+{
+    border-bottom:solid 0.1em #89B63A;
+    font-weight:bold;
+    background-color:#FBFAF8;
+}
+
+.ContentTable tbody tr td
+{
+    border-bottom:solid 0.1em #BCBCBC;
+}
+
+.ContentTable tr td a
+{
+    text-decoration:none;
+    color:#4E7C00;
+}
+
+.ContentTable tr td a:hover
+{
+    text-decoration:underline;
+}

@@ -1,0 +1,1244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TipTraceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TipTraceModelStoreContainer">
+          <EntitySet Name="Client" EntityType="TipTraceModel.Store.Client" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClientType" EntityType="TipTraceModel.Store.ClientType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Setting" EntityType="TipTraceModel.Store.Setting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Share" EntityType="TipTraceModel.Store.Share" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShareClick" EntityType="TipTraceModel.Store.ShareClick" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShareSession" EntityType="TipTraceModel.Store.ShareSession" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SourceType" EntityType="TipTraceModel.Store.SourceType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Url" EntityType="TipTraceModel.Store.Url" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UrlView" EntityType="TipTraceModel.Store.UrlView" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="TipTraceModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserSource" EntityType="TipTraceModel.Store.UserSource" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Client_ClientType" Association="TipTraceModel.Store.FK_Client_ClientType">
+            <End Role="ClientType" EntitySet="ClientType" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_ShareSession" Association="TipTraceModel.Store.FK_Share_ShareSession">
+            <End Role="ShareSession" EntitySet="ShareSession" />
+            <End Role="Share" EntitySet="Share" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_SourceType" Association="TipTraceModel.Store.FK_Share_SourceType">
+            <End Role="SourceType" EntitySet="SourceType" />
+            <End Role="Share" EntitySet="Share" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareClick_Share" Association="TipTraceModel.Store.FK_ShareClick_Share">
+            <End Role="Share" EntitySet="Share" />
+            <End Role="ShareClick" EntitySet="ShareClick" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareSession_Client" Association="TipTraceModel.Store.FK_ShareSession_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ShareSession" EntitySet="ShareSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareSession_Url" Association="TipTraceModel.Store.FK_ShareSession_Url">
+            <End Role="Url" EntitySet="Url" />
+            <End Role="ShareSession" EntitySet="ShareSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareSession_User" Association="TipTraceModel.Store.FK_ShareSession_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ShareSession" EntitySet="ShareSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrlView_Client" Association="TipTraceModel.Store.FK_UrlView_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="UrlView" EntitySet="UrlView" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrlView_Url" Association="TipTraceModel.Store.FK_UrlView_Url">
+            <End Role="Url" EntitySet="Url" />
+            <End Role="UrlView" EntitySet="UrlView" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSource_SourceType" Association="TipTraceModel.Store.FK_UserSource_SourceType">
+            <End Role="SourceType" EntitySet="SourceType" />
+            <End Role="UserSource" EntitySet="UserSource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSource_User" Association="TipTraceModel.Store.FK_UserSource_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserSource" EntitySet="UserSource" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="WebsiteUrl" Type="varchar" MaxLength="150" />
+          <Property Name="Hash" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="PasswordHash" Type="binary" MaxLength="50" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateEdited" Type="datetime" Nullable="false" />
+          <Property Name="IsValidated" Type="bit" Nullable="false" />
+          <Property Name="ValidateHash" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="WithEmailReward" Type="bit" Nullable="false" />
+          <Property Name="WithEmailUpdate" Type="bit" Nullable="false" />
+          <Property Name="DefaultTipMessage" Type="varchar" MaxLength="500" />
+          <Property Name="CustomEmailTemplate" Type="varchar(max)" />
+          <Property Name="CustomColor1" Type="varchar" MaxLength="10" />
+          <Property Name="CustomColor2" Type="varchar" MaxLength="10" />
+          <Property Name="CustomColor3" Type="varchar" MaxLength="10" />
+          <Property Name="CustomColor4" Type="varchar" MaxLength="10" />
+          <Property Name="CustomColor5" Type="varchar" MaxLength="10" />
+          <Property Name="CustomColor6" Type="varchar" MaxLength="10" />
+          <Property Name="CallbackUrl" Type="varchar" MaxLength="512" />
+          <Property Name="CustomStatus1" Type="bit" Nullable="false" />
+          <Property Name="CustomStatus2" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientType">
+          <Key>
+            <PropertyRef Name="ClientTypeId" />
+          </Key>
+          <Property Name="ClientTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Share">
+          <Key>
+            <PropertyRef Name="ShareId" />
+          </Key>
+          <Property Name="ShareId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ShareSessionId" Type="int" Nullable="false" />
+          <Property Name="TargetTypeId" Type="int" Nullable="false" />
+          <Property Name="TargetId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TargetName" Type="varchar" MaxLength="150" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="ShareStatusID" Type="int" Nullable="false" />
+          <Property Name="ShareStatus" Type="varchar" MaxLength="512" />
+          <Property Name="ShortUrl" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ClickCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShareClick">
+          <Key>
+            <PropertyRef Name="ShareClickId" />
+          </Key>
+          <Property Name="ShareClickId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ShareId" Type="int" Nullable="false" />
+          <Property Name="UserAgent" Type="varchar" MaxLength="512" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShareSession">
+          <Key>
+            <PropertyRef Name="ShareSessionId" />
+          </Key>
+          <Property Name="ShareSessionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UrlId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="512" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="256" />
+          <Property Name="EmailReward" Type="bit" Nullable="false" />
+          <Property Name="EmailUpdate" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SourceType">
+          <Key>
+            <PropertyRef Name="SourceTypeID" />
+          </Key>
+          <Property Name="SourceTypeID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Url">
+          <Key>
+            <PropertyRef Name="UrlId" />
+          </Key>
+          <Property Name="UrlId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Title" Type="varchar" MaxLength="150" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+          <Property Name="ViewCount" Type="int" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UrlView">
+          <Key>
+            <PropertyRef Name="UrlViewId" />
+          </Key>
+          <Property Name="UrlViewId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UrlId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="datetime" />
+          <Property Name="Hash" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="UserSource">
+          <Key>
+            <PropertyRef Name="UserSourceID" />
+          </Key>
+          <Property Name="UserSourceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SourceTypeId" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Token" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="TokenSecret" Type="varchar" MaxLength="1024" />
+          <Property Name="Verifier" Type="varchar" MaxLength="50" />
+          <Property Name="RefreshToken" Type="varchar" MaxLength="1024" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateEdited" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_ClientType">
+          <End Role="ClientType" Type="TipTraceModel.Store.ClientType" Multiplicity="1" />
+          <End Role="Client" Type="TipTraceModel.Store.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientType">
+              <PropertyRef Name="ClientTypeId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_ShareSession">
+          <End Role="ShareSession" Type="TipTraceModel.Store.ShareSession" Multiplicity="1" />
+          <End Role="Share" Type="TipTraceModel.Store.Share" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShareSession">
+              <PropertyRef Name="ShareSessionId" />
+            </Principal>
+            <Dependent Role="Share">
+              <PropertyRef Name="ShareSessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_SourceType">
+          <End Role="SourceType" Type="TipTraceModel.Store.SourceType" Multiplicity="1" />
+          <End Role="Share" Type="TipTraceModel.Store.Share" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="SourceTypeID" />
+            </Principal>
+            <Dependent Role="Share">
+              <PropertyRef Name="TargetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareClick_Share">
+          <End Role="Share" Type="TipTraceModel.Store.Share" Multiplicity="1" />
+          <End Role="ShareClick" Type="TipTraceModel.Store.ShareClick" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Share">
+              <PropertyRef Name="ShareId" />
+            </Principal>
+            <Dependent Role="ShareClick">
+              <PropertyRef Name="ShareId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareSession_Client">
+          <End Role="Client" Type="TipTraceModel.Store.Client" Multiplicity="0..1" />
+          <End Role="ShareSession" Type="TipTraceModel.Store.ShareSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ShareSession">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareSession_Url">
+          <End Role="Url" Type="TipTraceModel.Store.Url" Multiplicity="1" />
+          <End Role="ShareSession" Type="TipTraceModel.Store.ShareSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Url">
+              <PropertyRef Name="UrlId" />
+            </Principal>
+            <Dependent Role="ShareSession">
+              <PropertyRef Name="UrlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareSession_User">
+          <End Role="User" Type="TipTraceModel.Store.User" Multiplicity="1" />
+          <End Role="ShareSession" Type="TipTraceModel.Store.ShareSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShareSession">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrlView_Client">
+          <End Role="Client" Type="TipTraceModel.Store.Client" Multiplicity="0..1" />
+          <End Role="UrlView" Type="TipTraceModel.Store.UrlView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="UrlView">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrlView_Url">
+          <End Role="Url" Type="TipTraceModel.Store.Url" Multiplicity="1" />
+          <End Role="UrlView" Type="TipTraceModel.Store.UrlView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Url">
+              <PropertyRef Name="UrlId" />
+            </Principal>
+            <Dependent Role="UrlView">
+              <PropertyRef Name="UrlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSource_SourceType">
+          <End Role="SourceType" Type="TipTraceModel.Store.SourceType" Multiplicity="1" />
+          <End Role="UserSource" Type="TipTraceModel.Store.UserSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="SourceTypeID" />
+            </Principal>
+            <Dependent Role="UserSource">
+              <PropertyRef Name="SourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSource_User">
+          <End Role="User" Type="TipTraceModel.Store.User" Multiplicity="1" />
+          <End Role="UserSource" Type="TipTraceModel.Store.UserSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserSource">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetUniqueUrlCodes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUrlByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="UserAgent" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetUrlByValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Url" Type="varchar" Mode="In" />
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProcessToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserHash" Type="varchar" Mode="In" />
+          <Parameter Name="SourceTypeId" Type="int" Mode="In" />
+          <Parameter Name="Identifier" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Token" Type="varchar" Mode="In" />
+          <Parameter Name="TokenSecret" Type="varchar" Mode="In" />
+          <Parameter Name="Verifier" Type="varchar" Mode="In" />
+          <Parameter Name="RefreshToken" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SaveClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientTypeId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="WebsiteUrl" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SaveFeedback" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ShareSessionId" Type="int" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="WithEmailReward" Type="bit" Mode="In" />
+          <Parameter Name="WithEmailUpdate" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SaveShareSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserHash" Type="varchar" Mode="In" />
+          <Parameter Name="UrlId" Type="int" Mode="In" />
+          <Parameter Name="ClientHash" Type="varchar" Mode="In" />
+          <Parameter Name="Message" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="StatsClicksPerDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StatsClicksPerMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="StatsClicksTop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="In" />
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StatsClicksTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="UrlId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="StatsSharesPerDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StatsSharesPerMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="StatsSharesTop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="In" />
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StatsSharesTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="UrlId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="StatsViewsPerDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StatsViewsPerMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="StatsViewsTop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="In" />
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="StatsViewsTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClientId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="UrlId" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TipTraceModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TipTraceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClientTypes" EntityType="TipTraceModel.ClientType" />
+          <EntitySet Name="Shares" EntityType="TipTraceModel.Share" />
+          <EntitySet Name="ShareClicks" EntityType="TipTraceModel.ShareClick" />
+          <EntitySet Name="ShareSessions" EntityType="TipTraceModel.ShareSession" />
+          <EntitySet Name="SourceTypes" EntityType="TipTraceModel.SourceType" />
+          <EntitySet Name="Urls" EntityType="TipTraceModel.Url" />
+          <EntitySet Name="Users" EntityType="TipTraceModel.User" />
+          <EntitySet Name="UserSources" EntityType="TipTraceModel.UserSource" />
+          <AssociationSet Name="FK_Share_ShareSession" Association="TipTraceModel.FK_Share_ShareSession">
+            <End Role="ShareSession" EntitySet="ShareSessions" />
+            <End Role="Share" EntitySet="Shares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Share_SourceType" Association="TipTraceModel.FK_Share_SourceType">
+            <End Role="SourceType" EntitySet="SourceTypes" />
+            <End Role="Share" EntitySet="Shares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareClick_Share" Association="TipTraceModel.FK_ShareClick_Share">
+            <End Role="Share" EntitySet="Shares" />
+            <End Role="ShareClick" EntitySet="ShareClicks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareSession_Url" Association="TipTraceModel.FK_ShareSession_Url">
+            <End Role="Url" EntitySet="Urls" />
+            <End Role="ShareSession" EntitySet="ShareSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareSession_User" Association="TipTraceModel.FK_ShareSession_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ShareSession" EntitySet="ShareSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSource_SourceType" Association="TipTraceModel.FK_UserSource_SourceType">
+            <End Role="SourceType" EntitySet="SourceTypes" />
+            <End Role="UserSource" EntitySet="UserSources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSource_User" Association="TipTraceModel.FK_UserSource_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserSource" EntitySet="UserSources" />
+          </AssociationSet>
+          <FunctionImport Name="ProcessToken" EntitySet="Users" ReturnType="Collection(TipTraceModel.User)">
+            <Parameter Name="UserHash" Mode="In" Type="String" />
+            <Parameter Name="SourceTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="Identifier" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Token" Mode="In" Type="String" />
+            <Parameter Name="TokenSecret" Mode="In" Type="String" />
+            <Parameter Name="Verifier" Mode="In" Type="String" />
+            <Parameter Name="RefreshToken" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SaveShareSession" ReturnType="Collection(Int32)">
+            <Parameter Name="UserHash" Mode="In" Type="String" />
+            <Parameter Name="UrlId" Mode="In" Type="Int32" />
+            <Parameter Name="ClientHash" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUniqueUrlCodes" ReturnType="Collection(String)">
+          <Parameter Name="Count" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUrlByCode" EntitySet="Urls" ReturnType="Collection(TipTraceModel.Url)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="UserAgent" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SaveFeedback">
+            <Parameter Name="ShareSessionId" Mode="In" Type="Int32" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="WithEmailReward" Mode="In" Type="Boolean" />
+            <Parameter Name="WithEmailUpdate" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetUrlByValue" EntitySet="Urls" ReturnType="Collection(TipTraceModel.Url)">
+            <Parameter Name="Url" Mode="In" Type="String" />
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SaveClient" ReturnType="Collection(String)">
+            <Parameter Name="ClientTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="WebsiteUrl" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="UrlViews" EntityType="TipTraceModel.UrlView" />
+          <AssociationSet Name="FK_UrlView_Url" Association="TipTraceModel.FK_UrlView_Url">
+            <End Role="Url" EntitySet="Urls" />
+            <End Role="UrlView" EntitySet="UrlViews" />
+          </AssociationSet>
+          <FunctionImport Name="StatsViewsPerMonth" ReturnType="Collection(TipTraceModel.StatsResultDate)">
+          <Parameter Name="ClientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="StatsViewsTop" ReturnType="Collection(TipTraceModel.StatsResultTop)">
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StatsSharesPerDay" ReturnType="Collection(TipTraceModel.StatsResultDate)">
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StatsSharesPerMonth" ReturnType="Collection(TipTraceModel.StatsResultDate)">
+          <Parameter Name="ClientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="StatsSharesTop" ReturnType="Collection(TipTraceModel.StatsResultTop)">
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StatsClicksPerDay" ReturnType="Collection(TipTraceModel.StatsResultDate)">
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StatsClicksPerMonth" ReturnType="Collection(TipTraceModel.StatsResultDate)">
+          <Parameter Name="ClientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="StatsClicksTop" ReturnType="Collection(TipTraceModel.StatsResultTop)">
+            <Parameter Name="Count" Mode="In" Type="Int32" />
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StatsViewsPerDay" ReturnType="Collection(TipTraceModel.StatsResultDate)">
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="StatsViewsTotal" ReturnType="Collection(Int32)">
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UrlId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="StatsSharesTotal" ReturnType="Collection(Int32)">
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UrlId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="StatsClicksTotal" ReturnType="Collection(Int32)">
+            <Parameter Name="ClientId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UrlId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Settings" EntityType="TipTraceModel.Setting" />
+          <EntitySet Name="Clients" EntityType="TipTraceModel.Client" />
+          <AssociationSet Name="FK_Client_ClientType" Association="TipTraceModel.FK_Client_ClientType">
+            <End Role="ClientType" EntitySet="ClientTypes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShareSession_Client" Association="TipTraceModel.FK_ShareSession_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ShareSession" EntitySet="ShareSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UrlView_Client" Association="TipTraceModel.FK_UrlView_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="UrlView" EntitySet="UrlViews" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="ClientType">
+          <Key>
+            <PropertyRef Name="ClientTypeId" />
+          </Key>
+          <Property Type="Int32" Name="ClientTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Level" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="TipTraceModel.FK_Client_ClientType" FromRole="ClientType" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Share">
+          <Key>
+            <PropertyRef Name="ShareId" />
+          </Key>
+          <Property Type="Int32" Name="ShareId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ShareSessionId" Nullable="false" />
+          <Property Type="Int32" Name="TargetTypeId" Nullable="false" />
+          <Property Type="String" Name="TargetId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TargetName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="Int32" Name="ShareStatusID" Nullable="false" />
+          <Property Type="String" Name="ShortUrl" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ClickCount" Nullable="false" />
+          <NavigationProperty Name="ShareSession" Relationship="TipTraceModel.FK_Share_ShareSession" FromRole="Share" ToRole="ShareSession" />
+          <NavigationProperty Name="SourceType" Relationship="TipTraceModel.FK_Share_SourceType" FromRole="Share" ToRole="SourceType" />
+          <NavigationProperty Name="ShareClicks" Relationship="TipTraceModel.FK_ShareClick_Share" FromRole="Share" ToRole="ShareClick" />
+          <Property Type="String" Name="ShareStatus" MaxLength="512" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ShareClick">
+          <Key>
+            <PropertyRef Name="ShareClickId" />
+          </Key>
+          <Property Type="Int32" Name="ShareClickId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ShareId" Nullable="false" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <NavigationProperty Name="Share" Relationship="TipTraceModel.FK_ShareClick_Share" FromRole="ShareClick" ToRole="Share" />
+          <Property Type="String" Name="UserAgent" MaxLength="512" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ShareSession">
+          <Key>
+            <PropertyRef Name="ShareSessionId" />
+          </Key>
+          <Property Type="Int32" Name="ShareSessionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="UrlId" Nullable="false" />
+          <Property Type="String" Name="Message" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <NavigationProperty Name="Shares" Relationship="TipTraceModel.FK_Share_ShareSession" FromRole="ShareSession" ToRole="Share" />
+          <NavigationProperty Name="Url" Relationship="TipTraceModel.FK_ShareSession_Url" FromRole="ShareSession" ToRole="Url" />
+          <NavigationProperty Name="User" Relationship="TipTraceModel.FK_ShareSession_User" FromRole="ShareSession" ToRole="User" />
+          <Property Type="Int32" Name="ClientId" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="EmailReward" Nullable="false" />
+          <Property Type="Boolean" Name="EmailUpdate" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="TipTraceModel.FK_ShareSession_Client" FromRole="ShareSession" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="SourceType">
+          <Key>
+            <PropertyRef Name="SourceTypeID" />
+          </Key>
+          <Property Type="Int32" Name="SourceTypeID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Shares" Relationship="TipTraceModel.FK_Share_SourceType" FromRole="SourceType" ToRole="Share" />
+          <NavigationProperty Name="UserSources" Relationship="TipTraceModel.FK_UserSource_SourceType" FromRole="SourceType" ToRole="UserSource" />
+        </EntityType>
+        <EntityType Name="Url">
+          <Key>
+            <PropertyRef Name="UrlId" />
+          </Key>
+          <Property Type="Int32" Name="UrlId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Value" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Title" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
+          <NavigationProperty Name="ShareSessions" Relationship="TipTraceModel.FK_ShareSession_Url" FromRole="Url" ToRole="ShareSession" />
+          <Property Type="Int32" Name="ViewCount" Nullable="false" />
+          <NavigationProperty Name="UrlViews" Relationship="TipTraceModel.FK_UrlView_Url" FromRole="Url" ToRole="UrlView" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Hash" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ShareSessions" Relationship="TipTraceModel.FK_ShareSession_User" FromRole="User" ToRole="ShareSession" />
+          <NavigationProperty Name="UserSources" Relationship="TipTraceModel.FK_UserSource_User" FromRole="User" ToRole="UserSource" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateUpdated" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserSource">
+          <Key>
+            <PropertyRef Name="UserSourceID" />
+          </Key>
+          <Property Type="Int32" Name="UserSourceID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="SourceTypeId" Nullable="false" />
+          <Property Type="String" Name="Identifier" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Token" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TokenSecret" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Verifier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RefreshToken" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SourceType" Relationship="TipTraceModel.FK_UserSource_SourceType" FromRole="UserSource" ToRole="SourceType" />
+          <NavigationProperty Name="User" Relationship="TipTraceModel.FK_UserSource_User" FromRole="UserSource" ToRole="User" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateEdited" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Share_ShareSession">
+          <End Type="TipTraceModel.ShareSession" Role="ShareSession" Multiplicity="1" />
+          <End Type="TipTraceModel.Share" Role="Share" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShareSession">
+              <PropertyRef Name="ShareSessionId" />
+            </Principal>
+            <Dependent Role="Share">
+              <PropertyRef Name="ShareSessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Share_SourceType">
+          <End Type="TipTraceModel.SourceType" Role="SourceType" Multiplicity="1" />
+          <End Type="TipTraceModel.Share" Role="Share" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="SourceTypeID" />
+            </Principal>
+            <Dependent Role="Share">
+              <PropertyRef Name="TargetTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareClick_Share">
+          <End Type="TipTraceModel.Share" Role="Share" Multiplicity="1" />
+          <End Type="TipTraceModel.ShareClick" Role="ShareClick" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Share">
+              <PropertyRef Name="ShareId" />
+            </Principal>
+            <Dependent Role="ShareClick">
+              <PropertyRef Name="ShareId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareSession_Url">
+          <End Type="TipTraceModel.Url" Role="Url" Multiplicity="1" />
+          <End Type="TipTraceModel.ShareSession" Role="ShareSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Url">
+              <PropertyRef Name="UrlId" />
+            </Principal>
+            <Dependent Role="ShareSession">
+              <PropertyRef Name="UrlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareSession_User">
+          <End Type="TipTraceModel.User" Role="User" Multiplicity="1" />
+          <End Type="TipTraceModel.ShareSession" Role="ShareSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShareSession">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSource_SourceType">
+          <End Type="TipTraceModel.SourceType" Role="SourceType" Multiplicity="1" />
+          <End Type="TipTraceModel.UserSource" Role="UserSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="SourceTypeID" />
+            </Principal>
+            <Dependent Role="UserSource">
+              <PropertyRef Name="SourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSource_User">
+          <End Type="TipTraceModel.User" Role="User" Multiplicity="1" />
+          <End Type="TipTraceModel.UserSource" Role="UserSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserSource">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UrlView">
+          <Key>
+            <PropertyRef Name="UrlViewId" />
+          </Key>
+          <Property Type="Int32" Name="UrlViewId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UrlId" Nullable="false" />
+          <Property Type="Int32" Name="ClientId" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <NavigationProperty Name="Url" Relationship="TipTraceModel.FK_UrlView_Url" FromRole="UrlView" ToRole="Url" />
+          <NavigationProperty Name="Client" Relationship="TipTraceModel.FK_UrlView_Client" FromRole="UrlView" ToRole="Client" />
+        </EntityType>
+        <Association Name="FK_UrlView_Url">
+          <End Type="TipTraceModel.Url" Role="Url" Multiplicity="1" />
+          <End Type="TipTraceModel.UrlView" Role="UrlView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Url">
+              <PropertyRef Name="UrlId" />
+            </Principal>
+            <Dependent Role="UrlView">
+              <PropertyRef Name="UrlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="StatsResultDate">
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="StatsResultTop">
+          <Property Type="Int32" Name="Count" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Value" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Type="Int32" Name="SettingId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Type="Int32" Name="ClientId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WebsiteUrl" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Hash" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="PasswordHash" MaxLength="50" FixedLength="true" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateEdited" Nullable="false" />
+          <Property Type="Boolean" Name="IsValidated" Nullable="false" />
+          <Property Type="String" Name="ValidateHash" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="WithEmailReward" Nullable="false" />
+          <Property Type="Boolean" Name="WithEmailUpdate" Nullable="false" />
+          <Property Type="String" Name="DefaultTipMessage" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomEmailTemplate" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomColor1" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomColor2" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomColor3" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomColor4" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomColor5" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CustomColor6" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CallbackUrl" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="CustomStatus1" Nullable="false" />
+          <Property Type="Boolean" Name="CustomStatus2" Nullable="false" />
+          <NavigationProperty Name="ClientType" Relationship="TipTraceModel.FK_Client_ClientType" FromRole="Client" ToRole="ClientType" />
+          <NavigationProperty Name="ShareSessions" Relationship="TipTraceModel.FK_ShareSession_Client" FromRole="Client" ToRole="ShareSession" />
+          <NavigationProperty Name="UrlViews" Relationship="TipTraceModel.FK_UrlView_Client" FromRole="Client" ToRole="UrlView" />
+        </EntityType>
+        <Association Name="FK_Client_ClientType">
+          <End Type="TipTraceModel.ClientType" Role="ClientType" Multiplicity="1" />
+          <End Type="TipTraceModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientType">
+              <PropertyRef Name="ClientTypeId" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShareSession_Client">
+          <End Type="TipTraceModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="TipTraceModel.ShareSession" Role="ShareSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="ShareSession">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UrlView_Client">
+          <End Type="TipTraceModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="TipTraceModel.UrlView" Role="UrlView" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="UrlView">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TipTraceModelStoreContainer" CdmEntityContainer="TipTraceEntities">
+          <EntitySetMapping Name="ClientTypes">
+            <EntityTypeMapping TypeName="TipTraceModel.ClientType">
+              <MappingFragment StoreEntitySet="ClientType">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientTypeId" ColumnName="ClientTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shares">
+            <EntityTypeMapping TypeName="TipTraceModel.Share">
+              <MappingFragment StoreEntitySet="Share">
+                <ScalarProperty Name="ShareStatus" ColumnName="ShareStatus" />
+                <ScalarProperty Name="ClickCount" ColumnName="ClickCount" />
+                <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
+                <ScalarProperty Name="ShareStatusID" ColumnName="ShareStatusID" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="TargetName" ColumnName="TargetName" />
+                <ScalarProperty Name="TargetId" ColumnName="TargetId" />
+                <ScalarProperty Name="TargetTypeId" ColumnName="TargetTypeId" />
+                <ScalarProperty Name="ShareSessionId" ColumnName="ShareSessionId" />
+                <ScalarProperty Name="ShareId" ColumnName="ShareId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShareClicks">
+            <EntityTypeMapping TypeName="TipTraceModel.ShareClick">
+              <MappingFragment StoreEntitySet="ShareClick">
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="ShareId" ColumnName="ShareId" />
+                <ScalarProperty Name="ShareClickId" ColumnName="ShareClickId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShareSessions">
+            <EntityTypeMapping TypeName="TipTraceModel.ShareSession">
+              <MappingFragment StoreEntitySet="ShareSession">
+                <ScalarProperty Name="EmailUpdate" ColumnName="EmailUpdate" />
+                <ScalarProperty Name="EmailReward" ColumnName="EmailReward" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UrlId" ColumnName="UrlId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShareSessionId" ColumnName="ShareSessionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SourceTypes">
+            <EntityTypeMapping TypeName="TipTraceModel.SourceType">
+              <MappingFragment StoreEntitySet="SourceType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SourceTypeID" ColumnName="SourceTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urls">
+            <EntityTypeMapping TypeName="TipTraceModel.Url">
+              <MappingFragment StoreEntitySet="Url">
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="UrlId" ColumnName="UrlId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TipTraceModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSources">
+            <EntityTypeMapping TypeName="TipTraceModel.UserSource">
+              <MappingFragment StoreEntitySet="UserSource">
+                <ScalarProperty Name="DateEdited" ColumnName="DateEdited" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="RefreshToken" ColumnName="RefreshToken" />
+                <ScalarProperty Name="Verifier" ColumnName="Verifier" />
+                <ScalarProperty Name="TokenSecret" ColumnName="TokenSecret" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="SourceTypeId" ColumnName="SourceTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserSourceID" ColumnName="UserSourceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ProcessToken" FunctionName="TipTraceModel.Store.ProcessToken" />
+          <FunctionImportMapping FunctionImportName="SaveShareSession" FunctionName="TipTraceModel.Store.SaveShareSession" />
+          <FunctionImportMapping FunctionImportName="GetUniqueUrlCodes" FunctionName="TipTraceModel.Store.GetUniqueUrlCodes" />
+          <FunctionImportMapping FunctionImportName="GetUrlByCode" FunctionName="TipTraceModel.Store.GetUrlByCode" />
+          <FunctionImportMapping FunctionImportName="SaveFeedback" FunctionName="TipTraceModel.Store.SaveFeedback" />
+          <FunctionImportMapping FunctionImportName="GetUrlByValue" FunctionName="TipTraceModel.Store.GetUrlByValue" />
+          <FunctionImportMapping FunctionImportName="SaveClient" FunctionName="TipTraceModel.Store.SaveClient" />
+          <EntitySetMapping Name="UrlViews">
+            <EntityTypeMapping TypeName="TipTraceModel.UrlView">
+              <MappingFragment StoreEntitySet="UrlView">
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UrlId" ColumnName="UrlId" />
+                <ScalarProperty Name="UrlViewId" ColumnName="UrlViewId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="StatsViewsPerMonth" FunctionName="TipTraceModel.Store.StatsViewsPerMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultDate">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsViewsTop" FunctionName="TipTraceModel.Store.StatsViewsTop">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultTop">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsSharesPerDay" FunctionName="TipTraceModel.Store.StatsSharesPerDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultDate">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsSharesPerMonth" FunctionName="TipTraceModel.Store.StatsSharesPerMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultDate">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsSharesTop" FunctionName="TipTraceModel.Store.StatsSharesTop">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultTop">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsClicksPerDay" FunctionName="TipTraceModel.Store.StatsClicksPerDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultDate">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsClicksPerMonth" FunctionName="TipTraceModel.Store.StatsClicksPerMonth">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultDate">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsClicksTop" FunctionName="TipTraceModel.Store.StatsClicksTop">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultTop">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsViewsPerDay" FunctionName="TipTraceModel.Store.StatsViewsPerDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TipTraceModel.StatsResultDate">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsViewsTotal" FunctionName="TipTraceModel.Store.StatsViewsTotal" />
+          <FunctionImportMapping FunctionImportName="StatsSharesTotal" FunctionName="TipTraceModel.Store.StatsSharesTotal" />
+          <FunctionImportMapping FunctionImportName="StatsClicksTotal" FunctionName="TipTraceModel.Store.StatsClicksTotal" />
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="TipTraceModel.Setting">
+              <MappingFragment StoreEntitySet="Setting">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="TipTraceModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="CustomStatus2" ColumnName="CustomStatus2" />
+                <ScalarProperty Name="CustomStatus1" ColumnName="CustomStatus1" />
+                <ScalarProperty Name="CallbackUrl" ColumnName="CallbackUrl" />
+                <ScalarProperty Name="CustomColor6" ColumnName="CustomColor6" />
+                <ScalarProperty Name="CustomColor5" ColumnName="CustomColor5" />
+                <ScalarProperty Name="CustomColor4" ColumnName="CustomColor4" />
+                <ScalarProperty Name="CustomColor3" ColumnName="CustomColor3" />
+                <ScalarProperty Name="CustomColor2" ColumnName="CustomColor2" />
+                <ScalarProperty Name="CustomColor1" ColumnName="CustomColor1" />
+                <ScalarProperty Name="CustomEmailTemplate" ColumnName="CustomEmailTemplate" />
+                <ScalarProperty Name="DefaultTipMessage" ColumnName="DefaultTipMessage" />
+                <ScalarProperty Name="WithEmailUpdate" ColumnName="WithEmailUpdate" />
+                <ScalarProperty Name="WithEmailReward" ColumnName="WithEmailReward" />
+                <ScalarProperty Name="ValidateHash" ColumnName="ValidateHash" />
+                <ScalarProperty Name="IsValidated" ColumnName="IsValidated" />
+                <ScalarProperty Name="DateEdited" ColumnName="DateEdited" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TipTrace">
+        <EntityTypeShape EntityType="TipTraceModel.ClientType" Width="1.5" PointX="3.75" PointY="2.25" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="TipTraceModel.Share" Width="1.5" PointX="8.25" PointY="4.375" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="TipTraceModel.ShareClick" Width="1.5" PointX="9.5" PointY="6.75" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="TipTraceModel.ShareSession" Width="1.5" PointX="3" PointY="4.875" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="TipTraceModel.SourceType" Width="1.5" PointX="6" PointY="8.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="TipTraceModel.Url" Width="1.5" PointX="0.75" PointY="1" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="TipTraceModel.User" Width="1.5" PointX="0.75" PointY="5.125" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="TipTraceModel.UserSource" Width="1.5" PointX="6" PointY="4.625" Height="3.1340950520833388" />
+        <AssociationConnector Association="TipTraceModel.FK_Share_ShareSession" >
+          <ConnectorPoint PointX="3.9531275" PointY="4.875" />
+          <ConnectorPoint PointX="3.9531275" PointY="4.46875" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="4.4687499999999991" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="4.46875" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="4.4687499999999991" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="4.46875" />
+          <ConnectorPoint PointX="8.25" PointY="4.46875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_Share_SourceType" >
+          <ConnectorPoint PointX="7.5" PointY="10.535584309895835" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="10.535584309895835" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="10.535584309895835" />
+          <ConnectorPoint PointX="8.28125" PointY="10.535584309895835" />
+          <ConnectorPoint PointX="8.28125" PointY="7.8936979166666656" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_ShareClick_Share" >
+          <ConnectorPoint PointX="8.921877" PointY="5.97068359375" />
+          <ConnectorPoint PointX="8.921877" PointY="7.7401432291666667" />
+          <ConnectorPoint PointX="9.5" PointY="7.7401432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_ShareSession_Url" >
+          <ConnectorPoint PointX="2.25" PointY="1.3927519034428866" />
+          <ConnectorPoint PointX="3.34375" PointY="1.3927519034428866" />
+          <ConnectorPoint PointX="3.34375" PointY="4.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_ShareSession_User" >
+          <ConnectorPoint PointX="2.25" PointY="6.3074446614583328" />
+          <ConnectorPoint PointX="3" PointY="6.3074446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_UserSource_SourceType" >
+          <ConnectorPoint PointX="6.75" PointY="8.875" />
+          <ConnectorPoint PointX="6.75" PointY="8.1436979166666656" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_UserSource_User" >
+          <ConnectorPoint PointX="1.5" PointY="5.125" />
+          <ConnectorPoint PointX="1.5" PointY="4.71875" />
+          <ConnectorPoint PointX="3.2604166666666665" PointY="4.7187499999999991" />
+          <ConnectorPoint PointX="3.4270833333333335" PointY="4.71875" />
+          <ConnectorPoint PointX="3.8697941666666664" PointY="4.7187499999999991" />
+          <ConnectorPoint PointX="4.0364608333333329" PointY="4.71875" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="4.7187499999999991" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="4.71875" />
+          <ConnectorPoint PointX="6" PointY="4.71875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TipTraceModel.UrlView" Width="1.5" PointX="7.5" PointY="1.25" Height="2.1725878906250031" />
+        <AssociationConnector Association="TipTraceModel.FK_UrlView_Url" >
+          <ConnectorPoint PointX="2.25" PointY="1.8526259517214432" />
+          <ConnectorPoint PointX="3.2604166666666665" PointY="1.8526259517214425" />
+          <ConnectorPoint PointX="3.4270833333333335" PointY="1.8526259517214432" />
+          <ConnectorPoint PointX="7.5" PointY="1.8526259517214432" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TipTraceModel.Setting" Width="1.5" PointX="8.375" PointY="8.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="TipTraceModel.Client" Width="1.5" PointX="6" PointY="12.25" Height="6.4032194010416674" />
+        <AssociationConnector Association="TipTraceModel.FK_Client_ClientType" >
+          <ConnectorPoint PointX="4.90625" PointY="4.0379850260416665" />
+          <ConnectorPoint PointX="4.90625" PointY="15.451609700520834" />
+          <ConnectorPoint PointX="6" PointY="15.451609700520834" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_ShareSession_Client" >
+          <ConnectorPoint PointX="6" PointY="13.819552350260423" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="13.819552350260423" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="13.819552350260423" />
+          <ConnectorPoint PointX="3.75" PointY="13.819552350260423" />
+          <ConnectorPoint PointX="3.75" PointY="8.3936979166666656" />
+        </AssociationConnector>
+        <AssociationConnector Association="TipTraceModel.FK_UrlView_Client" >
+          <ConnectorPoint PointX="7.5" PointY="15.451609700520834" />
+          <ConnectorPoint PointX="7.875" PointY="15.451609700520834" />
+          <ConnectorPoint PointX="7.875" PointY="3.422587890625" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+﻿@model Manage.Models.Settings
+@{
+    ViewBag.Title = "Advanced settings";
+}
+
+
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h1>Settings <i class="fa fa-angle-double-right"></i> Advanced</h1>
+<p>These settings are under construction. Not functional yet.</p>
+<p>Also, don't change anything here if you don't know what you are doing!</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null) {
+    <p class="SuccesMessage">Advanced settings have been saved</p>
+    }
+    
+    <fieldset>
+        <legend>Callback Url</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.CallbackUrl)
+                @Html.TextBoxFor(m => m.CallbackUrl, new { @style = "width:40em;" })
+                @Html.ValidationMessageFor(m => m.CallbackUrl)
+            </li>
+        </ul>
+        <input type="submit" value="Update" />
+    </fieldset>
+}
+

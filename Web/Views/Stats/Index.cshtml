@@ -1,0 +1,139 @@
+﻿@{
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+
+<h1>Stats</h1>
+
+
+<table>
+    <tr>
+        <td>Users</td>
+        <td>@ViewBag.Usercount</td>
+    </tr>
+    <tr>
+        <td>User Networks</td>
+        <td>@ViewBag.UserSourceCount</td>
+    </tr>
+    <tr>
+        <td>ShareSessions</td>
+        <td>@ViewBag.ShareSessionCount</td>
+    </tr>
+    <tr>
+        <td>Shares</td>
+        <td>@ViewBag.ShareCount</td>
+    </tr>
+</table>
+
+<h2>Users (@ViewBag.Usercount) & Networks (@ViewBag.UserSourceCount)</h2>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                UserId
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Network
+            </th>
+            <th>
+                DateAdded
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.NewUsers)
+        {
+            <tr>
+                <td>
+                    @item.UserId
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.SourceType.Name
+                </td>
+                <td>
+                    @item.DateAdded
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>ShareSessions (@ViewBag.ShareSessionCount) & Shares (@ViewBag.ShareCount)</h2>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Network
+            </th>
+            <th>
+                Session
+            </th>
+            <th>
+                From
+            </th>
+            <th>
+                To
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Url
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Clicks
+            </th>
+            <th>
+                DateAdded
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.NewShares)
+        {
+            <tr>
+                <td>
+                    @item.SourceType.Name
+                </td>
+                <td>
+                    @item.ShareSessionId
+                </td>
+                <td>
+                    @item.ShareSession.UserId
+                </td>
+                <td>
+                    @item.TargetName
+                </td>
+                <td>
+                    @Html.CutString(item.ShareSession.Message as String, 40)
+                </td>
+                <td>
+                    @item.ShareSession.Url.Value
+                </td>
+                <td>
+                    @item.ShareStatusID
+                </td>
+                <td>
+                    @item.ClickCount
+                </td>
+                <td>
+                    @item.DateAdded
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

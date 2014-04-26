@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+@*<script type="text/javascript">    (function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//script.tiptrace.com/script"; fjs.parentNode.insertBefore(js, fjs); } (document, 'script', 'tiptrace-js'));</script>
+*@
+<script type="text/javascript">
+
+    var tt_options = tt_options || { Client : "444A87CB-45B2-44B1-9927-B448B049CE6D" };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//localhost:14053/script";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'tiptrace-js'));
+</script>
+
+
+
+
+<h2>Share!</h2>
+
+<span class="tt-tipthis" data-url="http://www.iex.nl">Tip this custom url!!</span>
+
+<br />
+
+<span class="tt-tipthis" id="button2">TipThis!</span>
+
+
+<br />
+
+<span class="tt-tipthis">TipThis!</span>
+
+
+<br />
+
+<span class="tt-tipthis" data-url="http://www.iex.nl" id="button6">TipThis!</span>

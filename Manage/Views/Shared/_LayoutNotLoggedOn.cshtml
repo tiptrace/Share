@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title | TipTrace.com</title>
+    @Styles.Render("~/Content/notLoggedOn")
+    @Scripts.Render("~/bundles/base")
+    <link href='//fonts.googleapis.com/css?family=News+Cycle:400,700' rel='stylesheet' type='text/css'>
+
+</head>
+<body class="NotLoggedOn">
+
+    <header>
+        <a href="/" class="Logo">TipTrace</a>
+    </header>
+
+    <div class="Container">
+        @RenderBody()   
+    </div>
+
+    <footer>
+        <p>
+            <a href="http://www.tiptrace.com">TipTrace</a> &copy; 
+        </p>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

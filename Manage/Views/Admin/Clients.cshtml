@@ -1,0 +1,53 @@
+﻿@model Manage.Models.ClientFilter
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h1>Admin <i class="fa fa-angle-double-right"></i> Clients</h1>
+
+@using (Html.BeginForm())
+{
+    
+    <fieldset>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.Filter)
+                @Html.EditorFor(m => m.Filter)
+            </li>      
+        </ul>
+        <input type="submit" value="Search" />
+    </fieldset>
+
+}
+
+<table class="ContentTable">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Website</td>
+            <td>Type</td>
+            <td>Email</td>
+            <td># Opens</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Clients)
+        { 
+            <tr>
+                <td>@item.ClientId</td>
+                <td>@Html.ActionLink((string)item.Name, "Client", "Admin", new { id = item.ClientId }, null)</td>
+                <td>@item.WebsiteUrl</td>
+                <td>@item.ClientType.Name</td>
+                <td>@item.Email</td>
+                <td>@item.UrlViews.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>

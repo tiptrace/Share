@@ -1,0 +1,66 @@
+﻿.tt_Overlay
+{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:99999990;
+    background-color: Black; 
+    
+    opacity: 0.6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+}
+
+
+.tt_OuterContainer
+{
+    width:713px;
+    height:486px;
+    position:fixed;
+    z-index:99999999;
+    text-align:center;
+    visibility: visible; 
+    background-color:White;
+    background-image:url('../images/ajax-loader.gif');
+    background-repeat:no-repeat;
+    background-position:center center;
+    top: 20px; 
+    
+    
+    left: 50%;  
+    margin:0 0 0 -350px;
+    
+}
+
+.tt_OuterContainer .tt_Frame
+{
+    width:713px;
+    border:none;
+    height:486px;
+}
+
+.tt_OuterContainer .tt_CloseButton
+{
+    width:38px;
+    height:38px;
+    position:absolute;
+    right:-19px;
+    top:-12px;
+    background-image:url('../images/lightboxClose.png');
+    background-repeat:no-repeat;
+}
+
+
+.tt_OuterContainer .tt_CloseButton:hover
+{
+    cursor:pointer;
+}
+
+.tt-tipthis:hover
+{
+    cursor:pointer;
+}

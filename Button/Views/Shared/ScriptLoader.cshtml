@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+var tt_Load = function () {
+
+    var Head = document.getElementsByTagName("head")[0];
+    return {
+        Javascript: function (source, callback) { 
+
+
+            if (!document.getElementById(source)) 
+            {
+                  var resource = document.createElement('script'); 
+                  resource.setAttribute("type", "text/javascript");
+                  resource.setAttribute("src", source);
+                  resource.id = source;
+                  resource.async = true;
+
+                  if(resource.addEventListener) {
+                    resource.addEventListener("load",callback,false);
+                  } 
+                  else if(resource.readyState) {
+                    resource.onreadystatechange = function () {
+                        if (resource.readyState in {loaded: 1, complete: 1}) {
+                            callback();
+                            resource.onreadystatechange = null;
+                        }
+                    };
+                  }
+                  var script = document.getElementsByTagName('script')[0];
+                  script.parentNode.insertBefore(resource, script);
+            }
+            else {
+                  callback();
+            }
+        },
+        StyleSheet: function (source) {
+            if (!document.getElementById(source)) 
+            {
+                Stylesheet = document.createElement("link");
+                Stylesheet.setAttribute("rel", "stylesheet");
+                Stylesheet.setAttribute("type", "text/css");
+                Stylesheet.setAttribute("href", source);
+                Stylesheet.setAttribute("id", source);
+                Head.appendChild(Stylesheet)
+            }
+        }
+    }
+}();

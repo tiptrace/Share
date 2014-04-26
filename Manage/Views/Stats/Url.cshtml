@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Url";
+}
+
+<h1>@ViewBag.Url.Title</h1>
+
+<p>Url: <strong><a href="@ViewBag.Url.Value" target="_blank">@ViewBag.Url.Value</a></strong></p>
+
+<div style="float:left;width:33%">
+    <h2>Views</h2>
+    <p style="font-size:30px;">@ViewBag.ViewCount</p>
+</div>
+<div style="float:left;width:33%">
+    <h2>Shares</h2>
+    <p style="font-size:30px;">@ViewBag.ShareCount</p>
+</div>
+<div style="float:left;width:33%">
+    <h2>Clicks</h2>
+    <p style="font-size:30px;">@ViewBag.ClickCount</p>
+</div>
+
+<p>
+    This page is under construction, more statistics to come!
+</p>

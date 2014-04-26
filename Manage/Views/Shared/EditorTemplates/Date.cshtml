@@ -1,0 +1,12 @@
+﻿@model DateTime
+@Html.TextBox("", null,
+  new { @class = "datefield", type = "text"  })
+
+<script type="text/javascript">
+$(function () {
+    $("#@ViewData.TemplateInfo.HtmlFieldPrefix ").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker("setDate", new Date(@String.Format("{0:yyyy,M-1,dd}", Model)));
+});
+</script>
+
+
+  

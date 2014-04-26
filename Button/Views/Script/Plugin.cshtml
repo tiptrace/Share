@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+@Html.Partial("ScriptLoader")
+
+var TipTraceHandler = function () {
+    tt_Load.StyleSheet("//script.tiptrace.com/content/css/tiptrace.css?ver2.0.2");
+    tt_Load.Javascript("//script.tiptrace.com/script/lib?type=bookmarklet&ver=2.0.2", function () {
+       if (typeof tt_Lib != "undefined") {
+            tt_Lib.DisplayPopup();
+       }
+    });
+} ();
+
+

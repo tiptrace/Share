@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title | TipTrace.com</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/base")
+    @Scripts.Render("~/bundles/highchart")
+
+    <script src="@Url.Content("~/Content/Javascript/Base.js")" type="text/javascript"></script>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=News+Cycle:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body class="LoggedOn">
+
+    <header class="clearfix">
+    
+        @{ Html.RenderAction("HeaderLoginData"); }
+
+        <a href="/" class="Logo">TipTrace</a>
+
+        <nav class="clearfix">
+            <ul class="MainMenu">
+                <li><a href="@Url.Action("Index", "Default")"><i class='fa fa-home'></i></a></li>
+                <li>@Html.ActionLink("My Code", "Index", "Implementation")</li>
+                <li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+                <li>@Html.ActionLink("Account", "Manage", "Account")</li>
+                <li>@Html.ActionLink("Statistics", "Index", "Stats")</li>
+                @if (User.IsInRole("admin")) {
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                }
+            </ul>
+            <ul class="AccountMenu">
+                <li>
+                    @Html.ActionLink("Log out", "Logout", "Account")
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    @if (IsSectionDefined("SubMenu"))
+    {
+        <div class="SubMenu">
+            @RenderSection("SubMenu", false)
+        </div>
+    }
+
+    <div class="Content @(!IsSectionDefined("SubMenu") ? "NoMenu" : "")">
+        @RenderBody()
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

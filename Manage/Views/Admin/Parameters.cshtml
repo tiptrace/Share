@@ -1,0 +1,26 @@
+﻿@model List<Db.Setting>
+@{
+    ViewBag.Title = "Parameters";
+}
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h1>Admin <i class="fa fa-angle-double-right"></i> Parameters</h1>
+
+<table class="ContentTable">
+    <thead>
+        <tr>
+            <td>Parameter</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { 
+            <tr>
+                <td>@Html.ActionLink((string)item.Name, "Parameter", "Admin", new { id = item.SettingId }, null)</td>
+            </tr>
+        }
+    </tbody>
+</table>

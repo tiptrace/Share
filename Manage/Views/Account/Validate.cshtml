@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutNotLoggedOn.cshtml";
+    ViewBag.Title = "Validate";
+}
+
+<h1>Validate</h1>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <p class="SuccesMessage">There was an error validating, are you sure you got the correct link?</p>
+}
+else
+{
+    <p>Your account has been validated, you can log in @Html.ActionLink("here", "Login").</p>
+}
+

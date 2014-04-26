@@ -1,0 +1,34 @@
+﻿@model Manage.Models.Settings
+@{
+    ViewBag.Title = "Custom email template";
+}
+
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h1>Settings <i class="fa fa-angle-double-right"></i> Custom email template</h1>
+<p>Increase conversion by providing a custom email template.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null) {
+    <p class="SuccesMessage">Custom email template has been saved</p>
+    }
+    
+    <fieldset>
+        <legend>Email template</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.CustomEmailTemplate)
+                @Html.TextAreaFor(m => m.CustomEmailTemplate, new { style = "width:40em;height:20em;" })
+                @Html.ValidationMessageFor(m => m.CustomEmailTemplate)
+            </li>
+        </ul>
+        <input type="submit" value="Update" />
+    </fieldset>
+}

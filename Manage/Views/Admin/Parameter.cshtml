@@ -1,0 +1,40 @@
+﻿@model Manage.Models.AdminSettings
+@{
+    ViewBag.Title = "Detail";
+}
+
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+<h2>Admin <i class="fa fa-angle-double-right"></i> Parameter <i class="fa fa-angle-double-right"></i> @Model.Name</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null)
+    {
+    <p class="SuccesMessage">Saved!</p>
+    }
+    
+        <fieldset>
+        <legend>Post-Tip settings</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.EditorFor(m => m.Name)
+            </li>        
+            <li>
+                @Html.LabelFor(m => m.Value)
+                @Html.TextAreaFor(m => m.Value, new { style = "width:40em;height:20em;" })
+            </li>
+        </ul>
+        @Html.HiddenFor(m => m.SettingId)
+        <input type="submit" value="Update" />
+    </fieldset>
+
+}
+

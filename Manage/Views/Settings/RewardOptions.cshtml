@@ -1,0 +1,38 @@
+﻿@model Manage.Models.Settings
+@{
+    ViewBag.Title = "Reward options";
+}
+
+@section SubMenu {
+    @Html.Partial("Menu")
+}
+
+
+<h1>Settings <i class="fa fa-angle-double-right"></i> Reward options</h1>
+<p>Enable reward options.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (ViewData["Message"] != null) {
+    <p class="SuccesMessage">Saved!</p>
+    }
+
+    
+    <fieldset>
+        <legend>Post-Tip settings</legend>
+        <ul>
+            <li>
+                @Html.EditorFor(m => m.WithEmailReward)
+                @Html.LabelFor(m => m.WithEmailReward, new { @class = "checkbox" })
+            </li>        
+            <li>
+                @Html.EditorFor(m => m.WithEmailUpdate)
+                @Html.LabelFor(m => m.WithEmailUpdate, new { @class = "checkbox" })
+            </li>
+        </ul>
+        <input type="submit" value="Update" />
+    </fieldset>
+}

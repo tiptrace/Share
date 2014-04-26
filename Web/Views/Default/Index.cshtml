@@ -1,0 +1,186 @@
+﻿@model Web.Models.Share
+@{
+    Layout = "~/Views/Shared/_ResponsiveLayout.cshtml";
+    ViewBag.Title = "Responsive";
+}
+<script language="javascript">
+    $(document).ready(function () {
+        var Settings = {};
+        Settings.WithEmailReward = @ViewBag.ClientSettings_WithEmailReward;
+        Settings.WithEmailUpdate = @ViewBag.ClientSettings_WithEmailUpdate;
+        Settings.DefaultTipMessage = "@Html.Raw(HttpUtility.JavaScriptStringEncode(ViewBag.ClientSettings_DefaultTipMessage))";
+
+        TipTraceWidget.initialize('@ViewBag.Url', '@ViewBag.ClientHash', Settings);
+    });
+</script>
+
+
+@*Custom Styles*@
+
+@if (!String.IsNullOrEmpty(ViewBag.ClientSettings_Color1))
+{
+    <style> #HeaderContainer header h1 { color:@ViewBag.ClientSettings_Color1 !important; } </style>
+}
+@if (!String.IsNullOrEmpty(ViewBag.ClientSettings_Color2))
+{
+    <style> .FormButton { border-color:@ViewBag.ClientSettings_Color2 !important; } </style>
+}
+@if (!String.IsNullOrEmpty(ViewBag.ClientSettings_Color3))
+{
+    <style> .FormButton { background-color:@ViewBag.ClientSettings_Color3 !important; } </style>
+}
+@if (!String.IsNullOrEmpty(ViewBag.ClientSettings_Color4))
+{
+    <style> .FormButton { color:@ViewBag.ClientSettings_Color4 !important; } </style>
+}
+
+
+
+<div id="LoadingContainer">
+    <div class="Inner"><!-- --></div>
+</div>
+
+<div id="HeaderContainer">
+
+    <header>
+        <h1>Loading...</h1>
+        <a href="javascript:void(0);" class="Logout">(log out)</a>   
+        <h2>Loading...</h2>
+        <div class="Dummy"><!-- --></div>
+    </header>
+
+    <div Id="NetworkContainer">
+
+       <div id="Networks" class="Networks">
+            <span class="Label TipVia">Tip via:</span>
+            <a href="javascript:void(0);" class="ConnectNetwork Email" id="Network_email" data-network="email" title="Email"><span>Email</span></a>
+            <span class="Label Or">or</span>
+            <a href="javascript:void(0);" class="ConnectNetwork Facebook" id="Network_facebook" data-network="facebook" title="Facebook"><span>Facebook</span></a>
+            <a href="javascript:void(0);" class="ConnectNetwork LinkedIn" id="Network_linkedin" data-network="linkedin" title="LinkedIn"><span>LinkedIn</span></a>
+            <a href="javascript:void(0);" class="ConnectNetwork Twitter" id="Network_twitter" data-network="twitter" title="Twitter"><span>Twitter</span></a>
+            <a href="javascript:void(0);" class="ConnectNetwork Google" id="Network_google" data-network="google" title="Gmail"><span>Gmail</span></a>
+            <a href="javascript:void(0);" class="ConnectNetwork Hotmail" id="Network_hotmail" data-network="hotmail" title="Hotmail"><span>Hotmail</span></a>
+        </div>
+        <div class="Dummy"><!-- --></div>
+
+    </div>
+
+</div>
+
+<div id="FeedbackMessage"></div>
+
+<div id="FinalContainer">
+    <h2>Share was successful</h2>
+
+    @using (Html.BeginForm("Feedback", "Default", FormMethod.Post, new { id = "FeedbackForm" }))
+    {
+        <p>Allow this website to contact me:</p>
+        <ul class="FeedbackOptionList">
+            <li id="FeedbackListItemReward">
+                <input type="checkbox" name="FeedbackOption" value="reward" />
+                to receive a reward for sharing (if applicable)
+            </li>
+            <li id="FeedbackListItemUpdate">
+                <input type="checkbox" name="FeedbackOption" value="update" />
+                to receive news & updates
+            </li>   
+        </ul>
+        <input type="Email" id="FeedbackEmail" name="FeedbackEmail" placeholder="Email address" />
+                
+        <input type="hidden" name="FeedbackShareSessionId" id="FeedbackShareSessionId" />
+                
+        <input type="submit" ID="SendFeedback" value="Save" class="FormButton" />
+    }
+
+    <div id="FeedBackSuccesMessage">
+        <p>Thanks for your feedback!</p>
+    </div>
+            
+    <p class="ResetShareParagraph">
+        <a class="ResetShare" href="javascript:void(0);">Share again</a>
+    </p>
+</div>
+
+<div id="ContactContainer">
+
+    <div class="SearchBox">
+        <input type="search" id="SearchBox" name="SearchBox" autocomplete="off" placeholder="Search friends" class="TextBox" />
+    </div>
+
+    <div class="Contacts">
+        <ul id="ContactList">
+        </ul>
+    </div>
+
+    <div class="SelectedContacts">
+        <h2 id="SelectedFriendHeader">
+            <span class="Header">Selected friends</span>
+            <span class="Counter">5</span>    
+        </h2>
+        <div class="SelectedContactContainer">
+            <ul id="SelectedContactList">
+            </ul>
+        </div>  
+    </div>
+    
+</div>
+
+<div id="AddEmailFormContainer">
+    
+        <div class="Overlay"><!-- --></div>
+
+        <div class="Popup">
+            <div class="CloseButton"><!-- --></div>
+
+            @using (Html.BeginForm("Index", "Default", FormMethod.Post, new { id = "AddEmailForm" }))
+            {
+                <h2>Add email manually</h2>
+                <input type="text" id="AddEmailSourceName" placeholder="Your name" class="Textbox" />
+                <input type="email" id="AddEmailSourceEmail" placeholder="Your email" class="Textbox"/>
+                <input type="text" id="AddEmailTargetName" placeholder="Your friends name" class="Textbox"/>
+                <input type="email" id="AddEmailTargetEmail" placeholder="Your friends email" class="Textbox"/>
+                <input type="submit" id="AddEmailButton" value="Add email" class="FormButton" />
+            }
+        </div>
+
+    </div>
+
+<div id="MessageContainer">
+    @using (Html.BeginForm("Index", "Default", FormMethod.Post, new { id = "ShareForm" }))
+    {
+        <h2>Don't forget to leave a personal message</h2>
+        
+        @Html.TextAreaFor(model => model.Message, new { placeholder = "Your personal message" })
+
+        @Html.HiddenFor(model => model.TargetsJson)
+        @Html.HiddenFor(model => model.UrlJson)
+        @Html.HiddenFor(model => model.ClientHash)
+        @Html.HiddenFor(model => model.ManualName)
+        @Html.HiddenFor(model => model.ManualEmail)
+
+        <input type="submit" ID="SendButton" value="Tip This!" class="Button FormButton" />   
+
+    }
+</div>
+
+<footer>
+
+    <div class="Menu">
+        <a href="http://www.tiptrace.com/help" target="_blank" title="Need help?">Need help?</a>
+        |
+        <a href="http://www.tiptrace.com/terms_conditions" target="_blank" title="Terms & Conditions">Terms & Conditions</a>
+        |
+        <a href="http://tiptrace.com/bookmarklet" target="_blank" title="Get bookmarktlet">Get bookmarktlet</a>
+    </div>
+
+    @if (!ViewBag.ClientSettings_Status1)
+    {
+    <a class="Logo" href="http://www.tiptrace.com" target="_blank" title="TipTrace.com">
+        TipTrace.com
+    </a>
+    <div class="Message">
+        Personal sharing provided by:
+    </div>
+    }
+
+</footer>

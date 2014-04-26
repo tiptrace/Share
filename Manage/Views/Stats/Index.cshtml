@@ -1,0 +1,175 @@
+﻿@model Manage.Models.PeriodModel
+@{
+    ViewBag.Title = "View statistics";
+}
+
+<h1>Views</h1>
+
+@using (Html.BeginForm("Index","Stats",FormMethod.Post, new { id = "PeriodForm" }))
+{
+    
+    <div style="float:left;width:150px">
+        <p>
+            @Html.LabelFor(m => m.StartDate)
+            @Html.EditorFor(m => m.StartDate)
+        </p>    
+    </div>
+    <div style="float:left;width:150px">
+        <p>
+            @Html.LabelFor(m => m.EndDate)
+            @Html.EditorFor(m => m.EndDate)
+        </p>
+    </div>
+    <div style="float:left;width:150px;margin-top:19px;">
+        <input type="submit" value="Update" />
+    </div>
+
+}
+
+<div style="clear:both;"><!-- --></div>
+
+
+
+<script>
+    $(document).ready(function () {
+        displayChart();
+    });
+
+    function displayChart() {
+        var ChartTypes = ["Views", "Shares", "Clicks"];
+        var seriesOptions = [];
+        var seriesCounter = 0;
+
+        $.each(ChartTypes, function (i, item) {
+            $.ajax({
+                method: "POST",
+                url: '/Stats/' + item + 'Json',
+                data: $('#PeriodForm').serialize(),
+                dataType: "json"
+            }).done(function (data) {
+                seriesCounter++;
+                var chartData = [];
+                $.each(data, function (i, item) {
+                    var DateValue = Date.UTC(item.Year, item.Month - 1, item.Day);
+                    chartData.push([DateValue, item.Count]);
+                });
+
+                var SeriesData = { name: item, data: chartData };
+                seriesOptions.push(SeriesData)
+
+                if (seriesCounter == ChartTypes.length)
+                    renderChart();
+            }).fail(function (jqxhr, textStatus, error) {
+                //alert("error")
+            });
+        });
+
+        function renderChart() {
+            var chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'ChartContainer',
+                    defaultSeriesType: 'line'
+                },
+                title: {
+                    text: null
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Count'
+                    },
+                    min:0
+                },
+                tooltip: {
+                    shared: true
+                },
+                series: seriesOptions
+            });
+        }
+    }
+</script>
+
+
+<div id="ChartContainer" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+
+
+<div style="float:left;width:33%">
+    <h2>Views</h2>
+    <p style="font-size:30px;">@ViewBag.ViewsTotal</p>
+</div>
+<div style="float:left;width:33%">
+    <h2>Shares</h2>
+    <p style="font-size:30px;">@ViewBag.SharesTotal</p>
+</div>
+<div style="float:left;width:33%">
+    <h2>Clicks</h2>
+    <p style="font-size:30px;">@ViewBag.ClicksTotal</p>
+</div>
+
+
+<div style="clear:both;"><!-- --></div>
+
+<div style="float:left;width:33%">
+    <h2>Top views</h2>
+    <table class="ContentTable" style="margin:0 10px 0 0;">
+        <thead>
+            <tr>
+                <td>Count</td>
+                <td>Url</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.ViewsTop)
+            { 
+                <tr>
+                    <td>@item.Count</td>
+                    <td>@Html.ActionLink((string)item.Value, "Url", "Stats", new { id = item.Id }, new { title = item.Description })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="float:left;width:33%;">
+    <h2>Top Shares</h2>
+    <table class="ContentTable" style="margin:0 10px 0 0;">
+        <thead>
+            <tr>
+                <td>Count</td>
+                <td>Url</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.SharesTop)
+            { 
+                <tr>
+                    <td>@item.Count</td>
+                    <td>@Html.ActionLink((string)item.Value, "Url", "Stats", new { id = item.Id }, new { title = item.Description })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="float:left;width:33%">
+    <h2>Top clicks</h2>
+    <table class="ContentTable" style="margin:0 10px 0 0;">
+        <thead>
+            <tr>
+                <td>Count</td>
+                <td>Url</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.ClicksTop)
+            { 
+                <tr>
+                    <td>@item.Count</td>
+                    <td>@Html.ActionLink((string)item.Value, "Url", "Stats", new { id = item.Id }, new { title = item.Description })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
