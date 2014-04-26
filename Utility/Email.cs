@@ -20,7 +20,7 @@ namespace Utility
                 MailMessage Message = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.mandrillapp.com");
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("mark@tiptrace.com", "oaivbO2k9Cu7GLm0oxPGqg");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("mark@tiptrace.com", "");
 
                 Message.From = new MailAddress(from_email, from_name);
                 Message.To.Add(new MailAddress(to_email, to_name));
