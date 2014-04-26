@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net.Mail;
+using System.Configuration;
 
 //using MailChimp;
 //using MailChimp.Types;
@@ -20,7 +21,10 @@ namespace Utility
                 MailMessage Message = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.mandrillapp.com");
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("mark@tiptrace.com", "");
+
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Mandrill.UserName"],
+                                                                          ConfigurationManager.AppSettings["Mandrill.Password"]);
 
                 Message.From = new MailAddress(from_email, from_name);
                 Message.To.Add(new MailAddress(to_email, to_name));
@@ -39,7 +43,7 @@ namespace Utility
             }
 
 
-            //var api = new MandrillApi("oaivbO2k9Cu7GLm0oxPGqg");
+            //var api = new MandrillApi(ConfigurationManager.AppSettings["Mandrill.Password"]);
 
 
             //var message = new MN.Messages.Message();
